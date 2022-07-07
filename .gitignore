@@ -36,3 +36,4 @@ abstractVM
 build
 
 # vscode folder
+.vscode

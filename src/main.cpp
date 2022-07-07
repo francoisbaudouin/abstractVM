@@ -5,9 +5,11 @@
 ** main
 */
 
-int main(int ac, char **argv) 
+#include "parser/Parser.hpp"
+
+int main(int ac, char **argv)
 {
     if (ac > 2)
         return (50);
-    return 0; 
+    return 0;
 }
