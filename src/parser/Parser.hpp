@@ -25,8 +25,11 @@ namespace Parser
 
         const std::vector<std::string> getData();
 
+        bool checkProvideData();
+
       protected:
       private:
+        bool _dataAvailable;
         std::vector<std::string> _data;
     };
 } // namespace Parser

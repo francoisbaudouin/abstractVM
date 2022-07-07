@@ -36,13 +36,14 @@ namespace Parser
     int ParssCommand::readData()
     {
         std::string line;
+
         if (!_data.empty()) {
             return (1);
         }
-        while (line.compare(";;") != 0) {
-            if (std::cin.eof())
+        while (1) {
+            std::getline(std::cin, line);
+            if (line.compare(";;") == 0)
                 break;
-            std::cin >> line;
             _data.push_back(line);
         }
         return (0);
