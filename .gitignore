@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+abstractVM
+
+# Build folder
+build
+
+# vscode folder
