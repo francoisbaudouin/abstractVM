@@ -7,6 +7,7 @@
 
 #include "Parser.hpp"
 #include <fstream>
+#include <string>
 
 namespace Parser
 {
