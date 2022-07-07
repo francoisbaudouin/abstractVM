@@ -30,5 +30,7 @@
 *.exe
 *.out
 *.app
+abstractVM
 
+# Build Folder
 build
