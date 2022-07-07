@@ -10,6 +10,7 @@
 
 #include <filesystem>
 #include <string>
+#include <vector>
 
 namespace Parser
 {
@@ -24,6 +25,7 @@ namespace Parser
 
       protected:
       private:
+        std::vector<std::string> _data;
     };
 } // namespace Parser
 
