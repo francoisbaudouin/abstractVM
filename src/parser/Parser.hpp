@@ -11,16 +11,17 @@
 #include <filesystem>
 #include <string>
 
-namespace Parser {
+namespace Parser
+{
     class ParssCommand {
-        public:
-            ParssCommand();
-            ~ParssCommand();
-            int readFile(const std::string filepath);
+      public:
+        ParssCommand();
+        ~ParssCommand();
+        int readFile(const std::string filepath);
 
-        protected:
-        private:
+      protected:
+      private:
     };
-} // name space Parser
+} // namespace Parser
 
 #endif

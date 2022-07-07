@@ -7,25 +7,23 @@
 
 #include "Parser.hpp"
 #include <fstream>
+#include <string>
 
-namespace Parser {
-    ParssCommand::ParssCommand()
-    {
-    }
+namespace Parser
+{
+    ParssCommand::ParssCommand() {}
 
-    ParssCommand::~ParssCommand()
-    {
-    }
-    
+    ParssCommand::~ParssCommand() {}
+
     int ParssCommand::readFile(const std::string path)
     {
         std::string line;
-        std::ifstream file(path);
+        /* std::ifstream file(path);
         if (file.is_open()) {
             file.close();
         } else {
-            //trow exeption
-        }
+            // trow exeption
+        } */
         return (0);
     }
-}
+} // namespace Parser

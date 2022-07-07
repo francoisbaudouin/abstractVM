@@ -2,9 +2,8 @@ name: Mirroring
 
 on:
   push:
-    branches: [ master ]
-
-  workflow_dispatch:
+    branches:
+      - master
 
 jobs:
   mirror:
