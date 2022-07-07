@@ -18,4 +18,4 @@ jobs:
           target_repo_url:
             git@github.com:EpitechPromo2025/B-CCP-400-NAN-4-1-theplazza-alexandre.tomasin.git
           ssh_private_key:
-            ${{ secrets.KEY_SSH }}
+            ${{ secrets.SSH_KEY }}
