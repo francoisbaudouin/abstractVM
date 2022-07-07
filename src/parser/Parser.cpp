@@ -8,13 +8,18 @@
 #include "Parser.hpp"
 #include <fstream>
 #include <iostream>
+#include <regex>
 #include <string>
 
 namespace Parser
 {
     ParssCommand::ParssCommand() {}
 
-    ParssCommand::~ParssCommand() { _data.clear(); }
+    ParssCommand::~ParssCommand()
+    {
+        if (_data.empty())
+            _data.clear();
+    }
 
     int ParssCommand::readData(const std::string path)
     {
@@ -42,7 +47,7 @@ namespace Parser
         }
         while (1) {
             std::getline(std::cin, line);
-            if (line.compare(";;") == 0)
+            if (line.compare(";;") == 0 || std::cin.eof())
                 break;
             _data.push_back(line);
         }
@@ -50,5 +55,12 @@ namespace Parser
     }
 
     const std::vector<std::string> ParssCommand::getData() { return (this->_data); }
+
+    bool ParssCommand::checkProvideData()
+    {
+        std::regex const patternPush("Push (int8|int16|int32|int64|Float|Double|BigDecimal) ([1-9][0-9])");
+        std::cout << std::boolalpha << std::regex_search(_data.front(), patternPush) << std::endl;
+        return (true);
+    }
 
 } // namespace Parser

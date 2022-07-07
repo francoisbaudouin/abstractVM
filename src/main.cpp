@@ -22,8 +22,9 @@ int main(int ac, char **argv)
     } else {
         pars.readData();
     }
+    pars.checkProvideData();
 
-    //get my data and display it
+    // get my data and display it
     test = pars.getData();
     for (std::string i : test)
         std::cout << i << std::endl;
