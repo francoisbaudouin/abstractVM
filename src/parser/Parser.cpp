@@ -20,15 +20,15 @@ namespace Parser
     {
         std::string line;
         std::ifstream file(path);
-        int i = 0;
 
         if (file.is_open()) {
-            while (getline(file, line)) {
+            while (std::getline(file, line)) {
                 _data.push_back(line);
             }
             file.close();
         } else {
             // trow exeption
+            return (1);
         }
         return (0);
     }
@@ -39,10 +39,15 @@ namespace Parser
         if (!_data.empty()) {
             return (1);
         }
-        while (line.compare(";;") == 0) {
+        while (line.compare(";;") != 0) {
+            if (std::cin.eof())
+                break;
             std::cin >> line;
             _data.push_back(line);
         }
         return (0);
     }
+
+    const std::vector<std::string> ParssCommand::getData() { return (this->_data); }
+
 } // namespace Parser
