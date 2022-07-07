@@ -11,16 +11,20 @@
 #include <filesystem>
 #include <string>
 
-namespace Parser {
+namespace Parser
+{
     class ParssCommand {
-        public:
-            ParssCommand();
-            ~ParssCommand();
-            int readFile(const std::string filepath);
+      public:
+        ParssCommand();
+        ~ParssCommand();
+        // read Data from file pass as parameter
+        int readData(const std::string filepath);
+        // read Data from input and write in dataInput.avm
+        void readData();
 
-        protected:
-        private:
+      protected:
+      private:
     };
-} // name space Parser
+} // namespace Parser
 
 #endif

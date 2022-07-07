@@ -5,9 +5,18 @@
 ** main
 */
 
-int main(int ac, char **argv) 
+#include <iostream>
+#include "parser/Parser.hpp"
+
+int main(int ac, char **argv)
 {
-    if (ac > 2)
-        return (50);
-    return 0; 
+    Parser::ParssCommand pars;
+
+    if (ac == 2) {
+        std::string str((argv[1]));
+        if (pars.readData(str) != 0) {
+            return (80);
+        }
+    }
+    return 0;
 }
