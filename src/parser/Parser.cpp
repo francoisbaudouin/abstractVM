@@ -7,6 +7,7 @@
 
 #include "Parser.hpp"
 #include <fstream>
+#include <iostream>
 #include <string>
 
 namespace Parser
@@ -32,5 +33,16 @@ namespace Parser
         return (0);
     }
 
-    void ParssCommand::readData() {}
+    int ParssCommand::readData()
+    {
+        std::string line;
+        if (!_data.empty()) {
+            return (1);
+        }
+        while (line.compare(";;") == 0) {
+            std::cin >> line;
+            _data.push_back(line);
+        }
+        return (0);
+    }
 } // namespace Parser

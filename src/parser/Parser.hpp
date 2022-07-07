@@ -21,7 +21,9 @@ namespace Parser
         // read Data from file pass as parameter
         int readData(const std::string filepath);
         // read Data from input and write in dataInput.avm
-        void readData();
+        int readData();
+
+        const std::vector<std::string> getData();
 
       protected:
       private:
