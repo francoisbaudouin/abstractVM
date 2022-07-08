@@ -33,7 +33,10 @@ namespace Parser
       protected:
       private:
         // std::fonction
-        std::map<std::function<std::string(std::string, std::string)>> fonction;
+        typedef void (*Funct)(void);
+        typedef std::unordered_map<std::string, Funct> ptrFunct; // Func can be replace by std::funct
+        typedef std::unordered_map<std::string, std::function()> functPtr;
+        ptrFunct array;
         bool _dataAvailable;
         std::vector<std::string> _data;
     };
