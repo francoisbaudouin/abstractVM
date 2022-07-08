@@ -60,9 +60,11 @@ namespace Parser
     {
         std::regex const patternCommandWithData("(push|assert) (int8|int16|int32|int64|float|double|bigDecimal)");
         std::regex const patternSimpleCommand("(;|pop|clear|dup|swap|dump|add|sub|mul|div|mod|print|exit)");
+        std::regex const patternRegistre("(load|store)");
         for (std::string i : _data) {
-            std::cout << i + " " << std::boolalpha << std::regex_search(i, patternCommandWithData) << std::endl;
-            if (std::regex_search(i, patternCommandWithData) == false && std::regex_search(i, patternSimpleCommand) == false) {
+            if (std::regex_search(i, patternCommandWithData) == false
+                && std::regex_search(i, patternSimpleCommand) == false
+                && std::regex_search(i, patternRegistre) == false) {
                 return (false);
             }
         }
