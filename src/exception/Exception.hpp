@@ -8,23 +8,24 @@
 #ifndef EXCEPTION_HPP_
 #define EXCEPTION_HPP_
 
-#include <iostream>
 #include <exception>
+#include <iostream>
 
-namespace AbstractVM {
+namespace AbstractVM
+{
     class Exception : public std::exception {
-        public:
-            Exception (std::string const &msg) throw();
-            virtual ~Exception() throw();
-            Exception(const Exception &other) = default;
-            Exception &operator=(const Exception &other) = default;
+      public:
+        Exception(std::string const &msg) throw();
+        virtual ~Exception() throw();
+        Exception(const Exception &other) = default;
+        Exception &operator=(const Exception &other) = default;
 
-            virtual const char* what() const throw();
+        virtual const char *what() const throw();
 
-        protected:
-        private:
-            std::string	_str;
+      protected:
+      private:
+        std::string _str;
     };
-}
+} // namespace AbstractVM
 
 #endif /* !EXCEPTION_HPP_ */

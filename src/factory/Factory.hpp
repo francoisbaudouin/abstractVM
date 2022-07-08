@@ -17,6 +17,7 @@ namespace AbstractVM
       public:
         static IOperand *createOperand(eOperandType type, const std::string &value);
         static std::map<eOperandType, IOperand *(*)(const std::string &value)> operands;
+
       protected:
       private:
         static IOperand *createInt8(const std::string &value);

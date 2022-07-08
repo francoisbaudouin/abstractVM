@@ -22,15 +22,13 @@ namespace AbstractVM
         std::pair<eOperandType, IOperand *(*)(const std::string &value)>(INT32, &Factory::createInt32),
         std::pair<eOperandType, IOperand *(*)(const std::string &value)>(FLOAT, &Factory::createFloat),
         std::pair<eOperandType, IOperand *(*)(const std::string &value)>(DOUBLE, &Factory::createDouble),
-        std::pair<eOperandType, IOperand *(*)(const std::string &value)>(DOUBLE, &Factory::createBigDecimal)
-    };
+        std::pair<eOperandType, IOperand *(*)(const std::string &value)>(DOUBLE, &Factory::createBigDecimal)};
 
     IOperand *Factory::createOperand(eOperandType type, const std::string &value)
     {
         Factory tmpFactory;
         auto newOpe = (operands[type]);
         return (newOpe)(value);
-
     }
 
     IOperand *Factory::createInt8(const std::string &value) { return (new Int8(value)); }

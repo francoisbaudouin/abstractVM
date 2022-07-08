@@ -19,8 +19,8 @@ namespace AbstractVM
         ~Int8();
         Int8(const Int8 &other) = default;
         Int8 &operator=(const Int8 &other) = default;
-        virtual std::string toString() const override; // string that represents the instance
-        virtual eOperandType getType() const override; // returns the type of instance
+        virtual std::string toString() const override;                   // string that represents the instance
+        virtual eOperandType getType() const override;                   // returns the type of instance
         virtual IOperand *operator+(const IOperand &rhs) const override; // sum
         virtual IOperand *operator-(const IOperand &rhs) const override; // difference
         virtual IOperand *operator*(const IOperand &rhs) const override; // product
