@@ -5,11 +5,24 @@
 ** main
 */
 
+#include <iostream>
 #include "parser/Parser.hpp"
 
 int main(int ac, char **argv)
 {
-    if (ac > 2)
-        return (50);
+    Parser::ParssCommand pars;
+
+    // Choice between reading file or user input
+    if (ac == 2) {
+        std::string str((argv[1]));
+        if (pars.readData(str) != 0) {
+            return (80);
+        }
+    } else {
+        pars.readData();
+    }
+    if (pars.checkProvideData() == false)
+        return (84);
+
     return 0;
 }

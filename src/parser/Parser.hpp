@@ -10,6 +10,7 @@
 
 #include <filesystem>
 #include <string>
+#include <vector>
 
 namespace Parser
 {
@@ -17,10 +18,19 @@ namespace Parser
       public:
         ParssCommand();
         ~ParssCommand();
-        int readFile(const std::string filepath);
+        // read Data from file pass as parameter
+        int readData(const std::string filepath);
+        // read Data from input and write in dataInput.avm
+        int readData();
+
+        const std::vector<std::string> getData();
+
+        bool checkProvideData();
 
       protected:
       private:
+        bool _dataAvailable;
+        std::vector<std::string> _data;
     };
 } // namespace Parser
 
