@@ -11,7 +11,15 @@ NAME = abstractVM
 TEST_N	=	unit_tests
 
 SRC =	src/main.cpp\
-		src/parser/Parser.cpp \
+		src/exception/Exception.cpp\
+		src/factory/Factory.cpp\
+		src/parser/Parser.cpp\
+		src/types/BigDecimal.cpp\
+		src/types/Double.cpp\
+		src/types/Float.cpp\
+		src/types/Int8.cpp\
+		src/types/Int16.cpp\
+		src/types/Int32.cpp
 
 SRC_T	=
 
