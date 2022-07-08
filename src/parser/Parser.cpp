@@ -57,14 +57,14 @@ namespace Parser
     const std::vector<std::string> ParssCommand::getData() { return (this->_data); }
 
     bool ParssCommand::checkProvideData()
-    {   
+    {
         std::regex const reg("([a-z]*)(\\s*(([a-z]+[0-9]?)*)\\((\\d+)\\))?"); // new regex
 
         for (std::string i : _data) {
-                if(std::regex_match(i, reg)) {
-                    //throw execption
-                    return (false);
-                }
+            if (std::regex_match(i, reg)) {
+                // throw execption
+                return (false);
+            }
         }
         return (true);
     }
