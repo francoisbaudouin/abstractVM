@@ -1,7 +1,0 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/francois/epi/tek2/synthesispool/abstractVM'
-g++ -std=c++20 -Wextra -Wall -Wreorder -Wshadow -Isrc/ -g   -c -o src/main.o src/main.cpp
-g++ -std=c++20 -Wextra -Wall -Wreorder -Wshadow -Isrc/ -g   -c -o src/parser/Parser.o src/parser/Parser.cpp
-g++ -o abstractVM src/main.o src/parser/Parser.o
-make: Leaving directory '/home/francois/epi/tek2/synthesispool/abstractVM'
- 
