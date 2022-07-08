@@ -12,6 +12,7 @@ int main(int ac, char **argv)
 {
     Parser::ParssCommand pars;
 
+    return (0);
     // Choice between reading file or user input
     if (ac == 2) {
         std::string str((argv[1]));

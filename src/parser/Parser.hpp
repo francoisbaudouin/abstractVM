@@ -9,6 +9,9 @@
 #define PARSER_HPP_
 
 #include <filesystem>
+#include <functional>
+#include <iostream>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -29,11 +32,8 @@ namespace Parser
 
       protected:
       private:
-        typedef struct parser_s {
-            std::string key;
-            void (*ptr)();
-        } parser_t;
         // std::fonction
+        std::map<std::function<std::string(std::string, std::string)>> fonction;
         bool _dataAvailable;
         std::vector<std::string> _data;
     };
