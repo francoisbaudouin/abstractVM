@@ -7,15 +7,8 @@
 
 #include "Exception.hpp"
 
-AbstractVM::Exception::Exception(const std::string &str) throw() : _str(str)
-{
-}
+AbstractVM::Exception::Exception(const std::string &str) throw() : _str(str) {}
 
-AbstractVM::Exception::~Exception() throw()
-{
-}
+AbstractVM::Exception::~Exception() throw() {}
 
-const char *AbstractVM::Exception::what() const throw()
-{
-    return (_str.c_str());
-}
+const char *AbstractVM::Exception::what() const throw() { return (_str.c_str()); }

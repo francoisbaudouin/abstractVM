@@ -2,22 +2,22 @@
 ** EPITECH PROJECT, 2022
 ** abstractVM
 ** File description:
-** Int8
+** Double
 */
 
-#ifndef INT8_HPP_
-#define INT8_HPP_
+#ifndef DOUBLE_HPP_
+#define DOUBLE_HPP_
 
-#include "AOperand.hpp"
+#include "IOperand.hpp"
 #include <string>
 
 namespace AbstractVM {
-    class Int8 : public AOperand {
+    class Double : public IOperand {
         public:
-            Int8(std::string value);
-            ~Int8();
-            Int8(const Int8 &other) = default;
-            Int8 &operator=(const Int8 &other) = default;
+            Double(std::string value);
+            ~Double();
+            Double(const Double &other) = default;
+            Double &operator=(const Double &other) = default;
             virtual std::string toString() const; // string that represents the instance
 
             virtual eOperandType getType() const; // returns the type of instance
@@ -35,6 +35,4 @@ namespace AbstractVM {
     };
 }
 
-
-
-#endif /* !INT8_HPP_ */
+#endif /* !DOUBLE_HPP_ */
