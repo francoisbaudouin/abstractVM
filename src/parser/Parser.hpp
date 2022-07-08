@@ -30,10 +30,10 @@ namespace Parser
       protected:
       private:
         typedef struct parser_s {
-          std::string key;
-          void (*ptr)();
+            std::string key;
+            void (*ptr)();
         } parser_t;
-        //std::fonction
+        // std::fonction
         bool _dataAvailable;
         std::vector<std::string> _data;
     };
