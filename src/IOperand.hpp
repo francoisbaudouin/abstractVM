@@ -13,27 +13,27 @@
 namespace AbstractVM {
 
     enum eOperandType {
-        Int8 = 0,
-        Int16 = 1,
-        Int32 = 2,
-        Float = 3,
-        Double = 4,
-        BigDecimal = 5
+        INT8 = 0,
+        INT16 = 1,
+        INT32 = 2,
+        FLOAT = 3,
+        DOUBLE = 4,
+        BIGDECIMAL = 5
     };
 
     class IOperand
     {
         public:
-        virtual std::string toString() const = 0; // string that represents the instance
+            virtual std::string toString() const = 0; // string that represents the instance
 
-        virtual eOperandType getType() const = 0; // returns the type of instance
+            virtual eOperandType getType() const = 0; // returns the type of instance
 
-        virtual IOperand* operator+(const IOperand &rhs) const = 0; // sum
-        virtual IOperand* operator-(const IOperand &rhs) const = 0; // difference
-        virtual IOperand* operator*(const IOperand &rhs) const = 0; // product
-        virtual IOperand* operator/(const IOperand &rhs) const = 0; // quotient
-        virtual IOperand* operator%(const IOperand &rhs) const = 0; // modulo
-        virtual ~IOperand() {}
+            virtual IOperand* operator+(const IOperand &rhs) const = 0; // sum
+            virtual IOperand* operator-(const IOperand &rhs) const = 0; // difference
+            virtual IOperand* operator*(const IOperand &rhs) const = 0; // product
+            virtual IOperand* operator/(const IOperand &rhs) const = 0; // quotient
+            virtual IOperand* operator%(const IOperand &rhs) const = 0; // modulo
+            virtual ~IOperand() {}
     };
 }
 
