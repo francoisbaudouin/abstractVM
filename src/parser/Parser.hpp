@@ -33,7 +33,7 @@ namespace Parser
           std::string key;
           void (*ptr)();
         } parser_t;
-
+        //std::fonction
         bool _dataAvailable;
         std::vector<std::string> _data;
     };

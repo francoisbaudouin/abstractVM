@@ -58,19 +58,19 @@ namespace Parser
 
     bool ParssCommand::checkProvideData()
     {   
-        std::regex const reg("(?<command>[a-z]*)(?<operandtype>\s*[a-z-0-9]*)?"); // new regex
-        std::regex const patternCommandWithData("(push|assert) (int8|int16|int32|int64|float|double|bigDecimal)");
+        std::regex const reg("([a-z]*)(\\s*(([a-z]+[0-9]?)*)\\((\\d+)\\))?"); // new regex
+        /* std::regex const patternCommandWithData("(push|assert) (int8|int16|int32|int64|float|double|bigDecimal)");
         std::regex const patternSimpleCommand("(;|pop|clear|dup|swap|dump|add|sub|mul|div|mod|print|exit)");
         std::regex const patternRegistre("(load|store)");
         std::regex const partternNbN("[-]?[0..9]+");
-        std::regex const partternNbZ("[-]?[0..9]+[.]?[0..9]*");
+        std::regex const partternNbZ("[-]?[0..9]+[.]?[0..9]*"); */
         for (std::string i : _data) {
-                std::cout << i + " " << std::boolalpha << std::regex_search(i, partternNbZ) << std::endl;
-            if (std::regex_search(i, patternCommandWithData) == false
-                && std::regex_search(i, patternSimpleCommand) == false
-                && std::regex_search(i, patternRegistre) == false) {
-                return (false);
-            }
+                std::cout << i + " " << std::boolalpha << std::regex_match(i, reg) << std::endl;
+            //if (std::regex_search(i, patternCommandWithData) == false
+            //    && std::regex_search(i, patternSimpleCommand) == false
+            //    && std::regex_search(i, patternRegistre) == false) {
+            //    return (false);
+            //}
         }
         return (true);
     }
