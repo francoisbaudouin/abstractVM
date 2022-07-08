@@ -21,8 +21,6 @@ int main(int ac, char **argv)
     } else {
         pars.readData();
     }
-    if (pars.checkProvideData() == false)
-        return (84);
-
+    pars.checkProvideData();
     return 0;
 }

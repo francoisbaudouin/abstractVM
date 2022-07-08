@@ -29,6 +29,11 @@ namespace Parser
 
       protected:
       private:
+        typedef struct parser_s {
+          std::string key;
+          void (*ptr)();
+        } parser_t;
+
         bool _dataAvailable;
         std::vector<std::string> _data;
     };
