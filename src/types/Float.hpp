@@ -31,6 +31,7 @@ namespace AbstractVM
       protected:
       private:
         std::string _value;
+        float _nbr;
         int _precision;
         eOperandType _type;
     };

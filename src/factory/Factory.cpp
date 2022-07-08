@@ -7,32 +7,37 @@
 
 #include "Factory.hpp"
 
-std::map<AbstractVM::eOperandType, AbstractVM::IOperand *(AbstractVM::Factory::*)(const std::string &value)> AbstractVM::Factory::operands = {
-    std::pair<eOperandType, IOperand *(Factory::*)(const std::string &value)> (AbstractVM::INT8, &Factory::createInt8),
-    std::pair<eOperandType, IOperand *(Factory::*)(const std::string &value)> (AbstractVM::INT16, &Factory::createInt16),
-    std::pair<eOperandType, IOperand *(Factory::*)(const std::string &value)> (AbstractVM::INT32, &Factory::createInt32),
-    std::pair<eOperandType, IOperand *(Factory::*)(const std::string &value)> (AbstractVM::FLOAT, &Factory::createFloat),
-    std::pair<eOperandType, IOperand *(Factory::*)(const std::string &value)> (AbstractVM::DOUBLE, &Factory::createDouble),
-    std::pair<eOperandType, IOperand *(Factory::*)(const std::string &value)> (AbstractVM::BIGDECIMAL, &Factory::createBigDecimal)
-};
+#include "types/BigDecimal.hpp"
+#include "types/Double.hpp"
+#include "types/Float.hpp"
+#include "types/Int16.hpp"
+#include "types/Int32.hpp"
+#include "types/Int8.hpp"
 
-AbstractVM::IOperand *AbstractVM::Factory::createOperand(eOperandType type, const std::string &value)
+namespace AbstractVM
 {
-    Factory tmpFactory;
-    AbstractVM::IOperand *newOpe = (tmpFactory.*operands[type])(value);
-    return (newOpe);
-    // IOperand *(Factory::*)(const std::string &value) operandFactory = operands[type];
-    // return operandFactory(value);
-}
+    std::map<eOperandType, IOperand *(*)(const std::string &value)> Factory::operands = {
+        std::pair<eOperandType, IOperand *(*)(const std::string &value)>(INT8, &Factory::createInt8),
+        std::pair<eOperandType, IOperand *(*)(const std::string &value)>(INT16, &Factory::createInt16),
+        std::pair<eOperandType, IOperand *(*)(const std::string &value)>(INT32, &Factory::createInt32),
+        std::pair<eOperandType, IOperand *(*)(const std::string &value)>(FLOAT, &Factory::createFloat),
+        std::pair<eOperandType, IOperand *(*)(const std::string &value)>(DOUBLE, &Factory::createDouble),
+        std::pair<eOperandType, IOperand *(*)(const std::string &value)>(DOUBLE, &Factory::createBigDecimal)
+    };
 
-AbstractVM::IOperand *createInt8(const std::string &value) { return (new AbstractVM::Int8(value)); }
+    IOperand *Factory::createOperand(eOperandType type, const std::string &value)
+    {
+        Factory tmpFactory;
+        auto newOpe = (operands[type]);
+        return (newOpe)(value);
 
-AbstractVM::IOperand *createInt16(const std::string &value) { return (new AbstractVM::Int16(value)); }
+    }
 
-AbstractVM::IOperand *createInt32(const std::string &value) { return (new AbstractVM::Int32(value)); }
+    IOperand *Factory::createInt8(const std::string &value) { return (new Int8(value)); }
+    IOperand *Factory::createInt16(const std::string &value) { return (new Int16(value)); }
+    IOperand *Factory::createInt32(const std::string &value) { return (new Int32(value)); }
+    IOperand *Factory::createFloat(const std::string &value) { return (new Float(value)); }
+    IOperand *Factory::createDouble(const std::string &value) { return (new Double(value)); }
+    IOperand *Factory::createBigDecimal(const std::string &value) { return (new BigDecimal(value)); }
 
-AbstractVM::IOperand *createFloat(const std::string &value) { return (new AbstractVM::Float(value)); }
-
-AbstractVM::IOperand *createDouble(const std::string &value) { return (new AbstractVM::Double(value)); }
-
-AbstractVM::IOperand *createBigDecimal(const std::string &value) { return (new AbstractVM::Double(value)); }
+} // namespace AbstractVM

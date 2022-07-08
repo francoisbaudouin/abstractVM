@@ -10,7 +10,6 @@
 
 #include <string>
 
-
 namespace AbstractVM
 {
     enum eOperandType { INT8 = 0, INT16 = 1, INT32 = 2, FLOAT = 3, DOUBLE = 4, BIGDECIMAL = 5 };

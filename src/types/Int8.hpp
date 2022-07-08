@@ -19,18 +19,17 @@ namespace AbstractVM
         ~Int8();
         Int8(const Int8 &other) = default;
         Int8 &operator=(const Int8 &other) = default;
-        virtual std::string toString() const; // string that represents the instance
-
-        virtual eOperandType getType() const; // returns the type of instance
-
-        virtual IOperand *operator+(const IOperand &rhs) const; // sum
-        virtual IOperand *operator-(const IOperand &rhs) const; // difference
-        virtual IOperand *operator*(const IOperand &rhs) const; // product
-        virtual IOperand *operator/(const IOperand &rhs) const; // quotient
-        virtual IOperand *operator%(const IOperand &rhs) const; // modulo
+        virtual std::string toString() const override; // string that represents the instance
+        virtual eOperandType getType() const override; // returns the type of instance
+        virtual IOperand *operator+(const IOperand &rhs) const override; // sum
+        virtual IOperand *operator-(const IOperand &rhs) const override; // difference
+        virtual IOperand *operator*(const IOperand &rhs) const override; // product
+        virtual IOperand *operator/(const IOperand &rhs) const override; // quotient
+        virtual IOperand *operator%(const IOperand &rhs) const override; // modulo
       protected:
       private:
         std::string _value;
+        char _nbr;
         int _precision;
         eOperandType _type;
     };
