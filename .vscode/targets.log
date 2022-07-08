@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.3
 # Built for x86_64-redhat-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -8,26 +6,32 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jun 18 07:22:46 2022
+# Make data base, printed on Fri Jul  8 08:20:38 2022
 
 # Variables
 
+# makefile (from 'Makefile', line 18)
+OBJ = $(SRC:.cpp=.o)
 # environment
 GDK_BACKEND = x11
 # environment
 LC_ALL = C
 # environment
 NO_AT_BRIDGE = 1
+# makefile (from 'Makefile', line 13)
+SRC = src/main.cpp src/parser/Parser.cpp 
 # environment
 GTK_RC_FILES = /etc/gtk/gtkrc:/home/francois/.gtkrc:/home/francois/.config/gtkrc
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-7d1228a6-7e8c-479b-8ec1-78e2d065af60.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-6e4d6a65-371d-4c93-8a45-fe3300ddaad6.sock
 # environment
-KONSOLE_DBUS_SERVICE = :1.439
+KONSOLE_DBUS_SERVICE = :1.87
 # environment
 VSCODE_CWD = /home/francois/epi/tek2/synthesispool/abstractVM
 # environment
 WINDOWID = 1
+# makefile (from 'Makefile', line 16)
+SRC_T = 
 # default
 MAKE_COMMAND := make
 # automatic
@@ -53,6 +57,8 @@ MAIL = /var/spool/mail/francois
 # environment
 XDG_DATA_DIRS = /home/francois/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
 # environment
+OLDPWD = /home/francois/epi/tek2/synthesispool
+# environment
 KONSOLE_DBUS_WINDOW = /Windows/1
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
@@ -63,19 +69,21 @@ VSCODE_LOG_STACK = false
 # environment
 VSCODE_CODE_CACHE_PATH = /home/francois/.config/Code/CachedData/4af164ea3a06f701fe3e89a2bcbb421d2026b68f
 # environment
-XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session2
+XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session1
 # environment
 SSH_ASKPASS = /usr/libexec/openssh/gnome-ssh-askpass
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/xauth_QkKqZN
+XAUTHORITY = /run/user/1000/xauth_UUtYgH
 # default
 .LOADED := 
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
 COLORFGBG = 15;0
+# makefile (from 'Makefile', line 24)
+TFLAGS = -lcriterion --coverage -Isrc/
 # makefile
 MAKEFLAGS = pqrR
 # environment
@@ -85,7 +93,7 @@ CURDIR := /home/francois/epi/tek2/synthesispool/abstractVM
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 LESSOPEN = ||/usr/bin/lesspipe.sh %s
 # automatic
@@ -110,8 +118,8 @@ XDG_CONFIG_DIRS = /home/francois/.config/kdedefaults:/etc/xdg:/usr/share/kde-set
 XCURSOR_THEME = breeze_cursors
 # environment
 XDG_SESSION_DESKTOP = KDE
-# makefile
-MAKEFILE_LIST := 
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
@@ -119,7 +127,7 @@ ZSH = /home/francois/.oh-my-zsh
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 62009
+VSCODE_PID = 5449
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -127,7 +135,7 @@ XDG_SESSION_TYPE = wayland
 # environment
 GDK_CORE_DEVICE_EVENTS = 1
 # environment
-SESSION_MANAGER = local/unix:@/tmp/.ICE-unix/3795,unix/unix:/tmp/.ICE-unix/3795
+SESSION_MANAGER = local/unix:@/tmp/.ICE-unix/3875,unix/unix:/tmp/.ICE-unix/3875
 # automatic
 *F = $(notdir $*)
 # environment
@@ -145,7 +153,7 @@ SHELL = /bin/sh
 # default
 MAKECMDGOALS := all
 # environment
-XDG_ACTIVATION_TOKEN = localhost.localdomain;1655454377;664836;3806_TIME0
+XDG_ACTIVATION_TOKEN = localhost.localdomain;1657261222;541099;3886_TIME0
 # environment
 SHLVL = 2
 # environment
@@ -165,7 +173,7 @@ LANGUAGE =
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = cfd8f1fe248049588789fbbf558483f9
+INVOCATION_ID = f3126534ef9646798aa8429a15fb29c0
 # environment
 VSCODE_LOG_NATIVE = false
 # environment
@@ -174,6 +182,8 @@ GDK_SCALE = 1
 ?F = $(notdir $?)
 # environment
 KDE_APPLICATIONS_AS_SCOPE = 1
+# makefile (from 'Makefile', line 9)
+NAME = abstractVM
 # environment
 XDG_SEAT = seat0
 # environment
@@ -199,9 +209,9 @@ LOGNAME = francois
 # environment
 XDG_VTNR = 1
 # makefile
-.DEFAULT_GOAL := 
+.DEFAULT_GOAL := all
 # environment
-SYSTEMD_EXEC_PID = 3806
+SYSTEMD_EXEC_PID = 3886
 # environment
 HISTCONTROL = ignoredups
 # environment
@@ -217,7 +227,7 @@ KDE_SESSION_UID = 1000
 # environment
 KONSOLE_DBUS_SESSION = /Sessions/1
 # environment
-MANAGERPID = 3679
+MANAGERPID = 3714
 # environment
 QT_WAYLAND_FORCE_DPI = 96
 # environment
@@ -233,7 +243,9 @@ XDG_RUNTIME_DIR = /run/user/1000
 # environment
 COLORTERM = truecolor
 # environment
-JOURNAL_STREAM = 8:43979
+JOURNAL_STREAM = 8:37190
+# makefile (from 'Makefile', line 11)
+TEST_N = unit_tests
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -260,23 +272,27 @@ XCURSOR_SIZE = 24
 SUFFIXES := 
 # environment
 QT_AUTO_SCREEN_SCALE_FACTOR = 0
- 
 # environment
 VSCODE_CLI = 1
 # environment
 ELECTRON_NO_ATTACH_CONSOLE = 1
+ 
+# makefile (from 'Makefile', line 22)
+CXXFLAGS = -std=c++20 -Wextra -Wall -Wreorder -Wshadow -Isrc/ -g
 # environment
-SHELL_SESSION_ID = f92f7adbe84842c9b0d426c6699dcac5
+SHELL_SESSION_ID = 8a6e30cbab374384aef3eb60004c52f7
 # environment
 KDE_SESSION_VERSION = 5
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink guile load
+# makefile (from 'Makefile', line 20)
+CXX = g++
 # environment
 KDE_FULL_SESSION = true
 # environment
 XDG_MENU_PREFIX = kf5-
 # variable set hash-table stats:
-# Load=131/1024=13%, Rehash=0, Collisions=10/158=6%
+# Load=140/1024=14%, Rehash=0, Collisions=14/175=8%
 
 # Pattern-specific Variable Values
 
@@ -284,9 +300,9 @@ XDG_MENU_PREFIX = kf5-
 
 # Directories
 
-# . (device 64770, inode 4721128): 27 files, no impossibilities.
+# . (device 64770, inode 4459207): 11 files, no impossibilities.
 
-# 27 files, no impossibilities in 1 directories.
+# 11 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -294,12 +310,41 @@ XDG_MENU_PREFIX = kf5-
 
 # Files
 
+tests_run: fclean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 45):
+	$(CC) -o $(TEST_N) $(SRC_T) $(TFLAGS)
+	./unit_tests
+	gcovr --exclude tests/
+
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-07-07 20:34:33.382525937
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 34):
+	$(RM) $(OBJ)
+
+re: fclean all
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/main.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-07 20:50:06.234181438
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 .DEFAULT:
@@ -307,41 +352,71 @@ Makefile:
 #  Modification time never checked.
 #  File has not been updated.
 
-# Not a target:
-all:
+all: abstractVM
+#  Phony target (prerequisite of .PHONY).
 #  Command line target.
-#  Implicit rule search has been done.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Successfully updated.
+
+fclean: clean clean_test
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 37):
+	$(RM) $(NAME)
+
+main:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
 
-# Not a target:
-makefile:
-#  Implicit rule search has been done.
-#  File does not exist.
+clean_test:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 40):
+	rm -f unit_tests
+	rm -f *.gcno
+	rm -f *.gcda
+
+abstractVM: src/main.o src/parser/Parser.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-07-07 20:50:08.810174953
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 29):
+	$(CXX) -o $(NAME) $(OBJ)
 
 # Not a target:
-GNUmakefile:
+src/parser/Parser.o:
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-07-07 20:50:08.718175185
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
+
+.PHONY: all main clean fclean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # files hash-table stats:
-# Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
+# Load=14/1024=1%, Rehash=0, Collisions=0/40=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 35 / storage = 330 B / avg = 9 B
-# current buf: size = 8162 B / used = 330 B / count = 35 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 25 / storage = 222 B / avg = 8 B
+# current buf: size = 8162 B / used = 222 B / count = 25 / avg = 8 B
 
-# strcache performance: lookups = 38 / hit rate = 7%
+# strcache performance: lookups = 48 / hit rate = 47%
 # hash-table stats:
-# Load=35/8192=0%, Rehash=0, Collisions=0/38=0%
-# Finished Make data base on Sat Jun 18 07:22:46 2022
+# Load=25/8192=0%, Rehash=0, Collisions=0/48=0%
+# Finished Make data base on Fri Jul  8 08:20:38 2022
 
  

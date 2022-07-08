@@ -11,7 +11,6 @@
 int main(int ac, char **argv)
 {
     Parser::ParssCommand pars;
-    std::vector<std::string> test;
 
     // Choice between reading file or user input
     if (ac == 2) {
@@ -22,12 +21,8 @@ int main(int ac, char **argv)
     } else {
         pars.readData();
     }
-    pars.checkProvideData();
+    if (pars.checkProvideData() == false)
+        return (84);
 
-    // get my data and display it
-    test = pars.getData();
-    for (std::string i : test)
-        std::cout << i << std::endl;
-    test.clear();
     return 0;
 }

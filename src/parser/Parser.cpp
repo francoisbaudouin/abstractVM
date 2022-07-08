@@ -58,9 +58,14 @@ namespace Parser
 
     bool ParssCommand::checkProvideData()
     {
-        std::regex const patternPush("push (int8|int16|int32|int64|Float|Double|BigDecimal) ([1-9])");
-        std::cout << _data.front() + " " << std::boolalpha << std::regex_search(_data.front(), patternPush)
-                  << std::endl;
+        std::regex const patternPush("(push|assert) (int8|int16|int32|int64|float|double|bigDecimal)");
+        std::regex const patternSimpleCommand("(;|pop|clear|dup|swap|dump|add|sub|mul|div|mod|print|exit)");
+        for (std::string i : _data) {
+            std::cout << i + " " << std::boolalpha << std::regex_search(i, patternPush) << std::endl;
+            if (std::regex_search(i, patternPush) == false && std::regex_search(i, patternSimpleCommand) == false) {
+                return (false);
+            }
+        }
         return (true);
     }
 
