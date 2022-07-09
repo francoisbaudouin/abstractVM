@@ -34,8 +34,8 @@ namespace AbstractVM
         void mul();
         void div();
         void mod();
-        // load v
-        // store v
+        void load ();
+        void store ();
         void print();
         void exit();
 
