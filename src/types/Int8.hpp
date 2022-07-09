@@ -18,6 +18,7 @@ namespace AbstractVM
         ~Int8();
         Int8(const Int8 &other) = default;
         Int8 &operator=(const Int8 &other) = default;
+
       protected:
       private:
     };

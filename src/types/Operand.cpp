@@ -23,7 +23,7 @@ std::string AbstractVM::Operand::toString() const { return (_value); }
 AbstractVM::IOperand *AbstractVM::Operand::operator+(const AbstractVM::IOperand &rhs) const
 {
     IOperand *newope;
-    AbstractVM::Factory *factory = new Factory();
+    AbstractVM::Factory *factory = new AbstractVM::Factory();
 
     double rhsDouble = std::stod(rhs.toString());
     double thisDouble = std::stod(this->toString());
@@ -43,7 +43,7 @@ AbstractVM::IOperand *AbstractVM::Operand::operator+(const AbstractVM::IOperand 
 AbstractVM::IOperand *AbstractVM::Operand::operator-(const AbstractVM::IOperand &rhs) const
 {
     IOperand *newope;
-    AbstractVM::Factory *factory = new Factory();
+    AbstractVM::Factory *factory = new AbstractVM::Factory();
 
     double rhsDouble = std::stod(rhs.toString());
     double thisDouble = std::stod(this->toString());
@@ -63,7 +63,7 @@ AbstractVM::IOperand *AbstractVM::Operand::operator-(const AbstractVM::IOperand 
 AbstractVM::IOperand *AbstractVM::Operand::operator*(const AbstractVM::IOperand &rhs) const
 {
     IOperand *newope;
-    AbstractVM::Factory *factory = new Factory();
+    AbstractVM::Factory *factory = new AbstractVM::Factory();
 
     double rhsDouble = std::stod(rhs.toString());
     double thisDouble = std::stod(this->toString());
@@ -83,7 +83,7 @@ AbstractVM::IOperand *AbstractVM::Operand::operator*(const AbstractVM::IOperand 
 AbstractVM::IOperand *AbstractVM::Operand::operator/(const AbstractVM::IOperand &rhs) const
 {
     IOperand *newope;
-    AbstractVM::Factory *factory = new Factory();
+    AbstractVM::Factory *factory = new AbstractVM::Factory();
 
     double rhsDouble = std::stod(rhs.toString());
     double thisDouble = std::stod(this->toString());
@@ -103,7 +103,7 @@ AbstractVM::IOperand *AbstractVM::Operand::operator/(const AbstractVM::IOperand 
 AbstractVM::IOperand *AbstractVM::Operand::operator%(const AbstractVM::IOperand &rhs) const
 {
     IOperand *newope;
-    AbstractVM::Factory *factory = new Factory();
+    AbstractVM::Factory *factory = new AbstractVM::Factory();
 
     double rhsDouble = std::stod(rhs.toString());
     double thisDouble = std::stod(this->toString());
@@ -119,4 +119,5 @@ AbstractVM::IOperand *AbstractVM::Operand::operator%(const AbstractVM::IOperand 
 
     return newope;
 };
+
 int AbstractVM::Operand::getPrecision() const { return (_precision); }

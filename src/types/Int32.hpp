@@ -8,7 +8,6 @@
 #ifndef INT32_HPP_
 #define INT32_HPP_
 
-
 #include "Operand.hpp"
 
 namespace AbstractVM
@@ -19,6 +18,7 @@ namespace AbstractVM
         ~Int32();
         Int32(const Int32 &other) = default;
         Int32 &operator=(const Int32 &other) = default;
+
       protected:
       private:
     };

@@ -18,6 +18,7 @@ namespace AbstractVM
         ~Double();
         Double(const Double &other) = default;
         Double &operator=(const Double &other) = default;
+
       protected:
       private:
     };

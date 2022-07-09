@@ -19,6 +19,7 @@ namespace AbstractVM
         ~Int16();
         Int16(const Int16 &other) = default;
         Int16 &operator=(const Int16 &other) = default;
+
       protected:
       private:
     };
