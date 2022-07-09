@@ -26,6 +26,8 @@ namespace AbstractVM
         virtual IOperand *operator/(const IOperand &rhs) const = 0; // quotient
         virtual IOperand *operator%(const IOperand &rhs) const = 0; // modulo
         virtual ~IOperand() {}
+
+        virtual int getPrecision() const = 0;
     };
 } // namespace AbstractVM
 

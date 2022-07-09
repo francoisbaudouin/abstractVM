@@ -6,13 +6,13 @@
 */
 
 #include "Factory.hpp"
-
 #include "types/BigDecimal.hpp"
 #include "types/Double.hpp"
 #include "types/Float.hpp"
 #include "types/Int16.hpp"
 #include "types/Int32.hpp"
 #include "types/Int8.hpp"
+#include "types/Operand.hpp"
 
 namespace AbstractVM
 {
@@ -22,11 +22,10 @@ namespace AbstractVM
         std::pair<eOperandType, IOperand *(*)(const std::string &value)>(INT32, &Factory::createInt32),
         std::pair<eOperandType, IOperand *(*)(const std::string &value)>(FLOAT, &Factory::createFloat),
         std::pair<eOperandType, IOperand *(*)(const std::string &value)>(DOUBLE, &Factory::createDouble),
-        std::pair<eOperandType, IOperand *(*)(const std::string &value)>(DOUBLE, &Factory::createBigDecimal)};
+        std::pair<eOperandType, IOperand *(*)(const std::string &value)>(BIGDECIMAL, &Factory::createBigDecimal)};
 
     IOperand *Factory::createOperand(eOperandType type, const std::string &value)
     {
-        Factory tmpFactory;
         auto newOpe = (operands[type]);
         return (newOpe)(value);
     }
