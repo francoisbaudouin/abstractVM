@@ -38,9 +38,11 @@ namespace AbstractVM
         void store(int value);
         void print();
         int myExit();
+
       protected:
       private:
-        std::vector<IOperand *> _register{NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
+        std::vector<IOperand *> _register{
+            NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
         std::stack<IOperand *> _stack;
     };
 } // namespace AbstractVM
