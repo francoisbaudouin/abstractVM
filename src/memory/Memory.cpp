@@ -7,12 +7,21 @@
 
 #include "Memory.hpp"
 #include <limits>
+#include "factory/Factory.hpp"
 
 AbstractVM::Memory::Memory() {}
 
 AbstractVM::Memory::~Memory() {}
 
-void AbstractVM::Memory::push(IOperand *value) { _stack.push(value); }
+// void AbstractVM::Memory::push(IOperand *value) { _stack.push(value); }
+
+void AbstractVM::Memory::push(std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>> data)
+{
+    IOperand *value;
+
+    value = AbstractVM::Factory::createOperand(data->first, data->second);
+    _stack.push(value);
+}
 
 void AbstractVM::Memory::pop() { _stack.pop(); }
 
@@ -40,9 +49,12 @@ void AbstractVM::Memory::dump() const
         std::cout << newStack.top()->toString() << '\n';
 }
 
-void AbstractVM::Memory::assert(IOperand *value) const
+void AbstractVM::Memory::assert(std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>> data) const
 {
+    IOperand *value;
     IOperand *saveOpe = _stack.top();
+
+    value = AbstractVM::Factory::createOperand(data->first, data->second);
     if (!(saveOpe->getType() == value->getType() && saveOpe->toString() == value->toString()))
         exit(84);
 }
