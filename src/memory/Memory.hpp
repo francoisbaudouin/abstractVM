@@ -9,7 +9,10 @@
 #define MEMORY_HPP_
 
 #include <iostream>
+#include <limits>
+#include <map>
 #include <stack>
+#include <tuple>
 #include <vector>
 #include "IOperand.hpp"
 
@@ -44,6 +47,7 @@ namespace AbstractVM
         std::vector<IOperand *> _register{
             NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
         std::stack<IOperand *> _stack;
+        std::map<eOperandType, std::tuple<signed char, signed char>> _limits;
     };
 } // namespace AbstractVM
 
