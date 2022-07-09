@@ -19,9 +19,14 @@ namespace Parser
         Interpretor();
         ~Interpretor();
 
+        int getValue(void) { return (_value); }
+
+        void setValue(int value) { _value = value; }
+
       protected:
       private:
         AbstractVM::Memory _memory;
+        int _value;
         std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>> _dataCommand;
         std::unordered_map<std::string, std::function<void()>> _functPtr{
             {"push", [this]() { _memory.push(_dataCommand); }},
@@ -36,8 +41,8 @@ namespace Parser
             {"mul", [this]() { _memory.mul(); }},
             {"div", [this]() { _memory.div(); }},
             {"mod", [this]() { _memory.mod(); }},
-            {"load", [this]() { _memory.load(); }},
-            {"store", [this]() { _memory.store(); }},
+            {"load", [this]() { _memory.load(_value); }},
+            {"store", [this]() { _memory.store(_value); }},
             {"print", [this]() { _memory.print(); }},
             {"exit", [this]() { _memory.myExit(); }},
         };
