@@ -35,7 +35,7 @@ namespace Parser
         // std::fonction
         typedef void (*Funct)(void);
         typedef std::unordered_map<std::string, Funct> ptrFunct; // Func can be replace by std::funct
-        typedef std::unordered_map<std::string, std::function()> functPtr;
+        std::unordered_map<std::string, std::function<int(int)>> _functPtr;
         ptrFunct array;
         bool _dataAvailable;
         std::vector<std::string> _data;

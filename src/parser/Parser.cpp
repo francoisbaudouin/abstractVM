@@ -11,6 +11,8 @@
 #include <regex>
 #include <string>
 
+int half(int i) { return i / 2; }
+
 namespace Parser
 {
     ParssCommand::ParssCommand() {}
@@ -66,6 +68,10 @@ namespace Parser
                 return (false);
             }
         }
+        std::function<int(int)> fn1 = half;
+
+        _functPtr["push"] = fn1;
+
         return (true);
     }
 
