@@ -38,7 +38,7 @@ class Interpretor {
         {"load", [this]() { _memory.load(); }},
         {"store", [this]() { _memory.store(); }},
         {"print", [this]() { _memory.print(); }},
-        {"exit", [this]() { _memory.exit(); }},
+        {"exit", [this]() { _memory.myExit(); }},
     };
 };
 

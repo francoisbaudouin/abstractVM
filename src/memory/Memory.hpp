@@ -23,25 +23,28 @@ namespace AbstractVM
         Memory &operator=(const Memory &other) = default;
 
         void push(std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>>);
+        void push(IOperand *value);
         void pop();
         void clear();
         void dup();
         void swap();
         void dump() const;
         bool assert(std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>> ops) const;
+        void assert(IOperand *value) const;
         void add();
         void sub();
         void mul();
         void div();
         void mod();
-        void load();
-        void store();
+        void load(int value);
+        void store(int value);
         void print();
-        void exit();
+        int myExit();
 
       protected:
       private:
-        std::vector<IOperand *> _register{};
+        std::vector<IOperand *> _register{
+            NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
         std::stack<IOperand *> _stack;
     };
 } // namespace AbstractVM
