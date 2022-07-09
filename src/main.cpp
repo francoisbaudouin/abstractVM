@@ -7,7 +7,22 @@
 
 #include <iostream>
 #include "factory/Factory.hpp"
+#include "parser/Interpretor.hpp"
 #include "parser/Parser.hpp"
+
+void execution_prog(std::vector<std::string> data)
+{
+    (void)data;
+    std::cout << "exec" << std::endl;
+    Parser::Interpretor exec;
+    std::string yolo = "40";
+    AbstractVM::IOperand *test = AbstractVM::Factory::createOperand(AbstractVM::eOperandType::INT8, yolo);
+    exec._memory.push(test);
+    exec._memory.print();
+    for (std::string i : data) {
+        std::cout << "my data is: " << i << std::endl;
+    }
+}
 
 int main(int ac, char **argv)
 {
@@ -24,6 +39,6 @@ int main(int ac, char **argv)
     }
     if (pars.checkProvideData() == false)
         return (84);
-
+    execution_prog(pars.getData());
     return 0;
 }

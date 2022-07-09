@@ -23,8 +23,6 @@ namespace Parser
 
         void setValue(int value) { _value = value; }
 
-      protected:
-      private:
         AbstractVM::Memory _memory;
         int _value;
         std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>> _dataCommand;
