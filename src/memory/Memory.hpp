@@ -28,7 +28,7 @@ namespace AbstractVM
         void dup();
         void swap();
         void dump() const;
-        bool assert(std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>>) const;
+        bool assert(std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>> ops) const;
         void add();
         void sub();
         void mul();
