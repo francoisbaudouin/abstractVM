@@ -48,6 +48,7 @@ namespace Parser
             if (line.compare(";;") == 0 || std::cin.eof())
                 break;
             if (line.compare("exit") == 0) {
+                std::cout << "banzaiii" << std::endl;
                 _exitIsCalled = true;
                 _allowToWriteData = false;
             }
@@ -61,15 +62,17 @@ namespace Parser
 
     bool ParssCommand::checkProvideData()
     {
+        /* if (_exitIsCalled == false)
+            return (false); */
         std::regex const reg("([a-z]*)(\\s*(([a-z]+[0-9]?)*)\\((\\d+)\\))?"); // new regex
 
         for (std::string i : _data) {
-            if (std::regex_match(i, reg)) {
+            std::cout << "my data is: " << i << std::endl;
+            if (std::regex_match(i, reg) == false) {
                 // throw execption
                 return (false);
             }
         }
-
         return (true);
     }
 

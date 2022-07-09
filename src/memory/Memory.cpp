@@ -13,7 +13,7 @@ AbstractVM::Memory::Memory() {}
 
 AbstractVM::Memory::~Memory() {}
 
-// void AbstractVM::Memory::push(IOperand *value) { _stack.push(value); }
+void AbstractVM::Memory::push(IOperand *value) { _stack.push(value); }
 
 void AbstractVM::Memory::push(std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>> data)
 {

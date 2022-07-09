@@ -17,11 +17,13 @@ int main(int ac, char **argv)
     if (ac == 2) {
         std::string str((argv[1]));
         if (pars.readData(str) != 0) {
-            return (80);
+            return (84);
         }
     } else {
         pars.readData();
     }
-    pars.checkProvideData();
+    if (pars.checkProvideData() == false)
+        return (84);
+
     return 0;
 }
