@@ -22,20 +22,20 @@ namespace AbstractVM
         Memory(const Memory &other) = default;
         Memory &operator=(const Memory &other) = default;
 
-        void push(std::pair<AbstractVM::eOperandType, std::string>);
+        void push(std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>>);
         void pop();
         void clear();
         void dup();
         void swap();
         void dump() const;
-        bool assert(const IOperand &value) const;
+        bool assert(std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>>) const;
         void add();
         void sub();
         void mul();
         void div();
         void mod();
-        void load ();
-        void store ();
+        void load();
+        void store();
         void print();
         void exit();
 

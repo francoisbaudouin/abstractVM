@@ -23,13 +23,13 @@ class Interpretor {
     AbstractVM::Memory memory;
     std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>> _dataCommand;
     std::unordered_map<std::string, std::function<void()>> _functPtr{
-        {"push", [this]() { memory.push(); }},
+        {"push", [this]() { memory.push(_dataCommand); }},
         {"pop", [this]() { memory.pop(); }},
         {"clear", [this]() { memory.clear(); }},
         {"dup", [this]() { memory.dup(); }},
         {"swap", [this]() { memory.swap(); }},
         {"dump", [this]() { memory.dump(); }},
-        {"assert", [this]() { memory.assert(); }},
+        {"assert", [this]() { memory.assert(_dataCommand); }},
         {"add", [this]() { memory.add(); }},
         {"sub", [this]() { memory.sub(); }},
         {"mul", [this]() { memory.mul(); }},
