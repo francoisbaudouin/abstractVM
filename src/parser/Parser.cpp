@@ -11,7 +11,7 @@
 #include <regex>
 #include <string>
 
-int half(int i) { return i / 2; }
+void half(std::string test = "test") { std::cout << test << std::endl; }
 
 namespace Parser
 {
@@ -21,6 +21,8 @@ namespace Parser
     {
         if (_data.empty())
             _data.clear();
+        if (_functPtr.empty())
+            _functPtr.clear();
     }
 
     int ParssCommand::readData(const std::string path)
@@ -68,9 +70,11 @@ namespace Parser
                 return (false);
             }
         }
-        std::function<int(int)> fn1 = half;
+        std::function<void(std::string)> fn1 = half;
 
         _functPtr["push"] = fn1;
+        std::cout << "test" << std::endl;
+        _functPtr["push"];
 
         return (true);
     }

@@ -29,14 +29,15 @@ namespace Parser
         const std::vector<std::string> getData();
 
         bool checkProvideData();
+        void push();
+        void pop();
 
       protected:
       private:
-        // std::fonction
-        typedef void (*Funct)(void);
-        typedef std::unordered_map<std::string, Funct> ptrFunct; // Func can be replace by std::funct
-        std::unordered_map<std::string, std::function<int(int)>> _functPtr;
-        ptrFunct array;
+        std::shared_ptr(Operand type, std::string) _dataCommand;
+        std::unordered_map<std::string, std::function<void()>> _functPtr{
+            {"push", [this]() { this->push(); }},
+        };
         bool _dataAvailable;
         std::vector<std::string> _data;
     };
