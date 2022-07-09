@@ -15,13 +15,14 @@ SRC =	src/main.cpp\
 		src/factory/Factory.cpp\
 		src/memory/Memory.cpp\
 		src/parser/Parser.cpp\
+		src/parser/Interpretor.cpp\
 		src/types/BigDecimal.cpp\
 		src/types/Double.cpp\
 		src/types/Float.cpp\
 		src/types/Int8.cpp\
 		src/types/Int16.cpp\
 		src/types/Int32.cpp\
-		src/types/Operand.cpp
+		src/types/Operand.cpp\
 
 SRC_T	=
 

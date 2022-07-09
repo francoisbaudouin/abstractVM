@@ -22,22 +22,23 @@ namespace AbstractVM
         Memory(const Memory &other) = default;
         Memory &operator=(const Memory &other) = default;
 
-        // void push(const IOperand &value);
-        // void pop();
-        // void clear();
-        // void dup();
-        // void swap();
-        // void dump() const;
-        // bool assert(T) const;
-        // void add();
-        // void sub();
-        // void mul();
-        // void div();
-        // void mod();
+        void push(std::pair<AbstractVM::eOperandType, std::string>);
+        void pop();
+        void clear();
+        void dup();
+        void swap();
+        void dump() const;
+        bool assert(const IOperand &value) const;
+        void add();
+        void sub();
+        void mul();
+        void div();
+        void mod();
         // load v
         // store v
-        // print
-        // exit
+        void print();
+        void exit();
+
       protected:
       private:
         std::vector<IOperand *> _register{};

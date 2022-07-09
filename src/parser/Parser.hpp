@@ -9,9 +9,7 @@
 #define PARSER_HPP_
 
 #include <filesystem>
-#include <functional>
 #include <iostream>
-#include <map>
 #include <string>
 #include <vector>
 
@@ -29,15 +27,9 @@ namespace Parser
         const std::vector<std::string> getData();
 
         bool checkProvideData();
-        void push();
-        void pop();
 
       protected:
       private:
-        std::shared_ptr(Operand type, std::string) _dataCommand;
-        std::unordered_map<std::string, std::function<void()>> _functPtr{
-            {"push", [this]() { this->push(); }},
-        };
         bool _dataAvailable;
         std::vector<std::string> _data;
     };

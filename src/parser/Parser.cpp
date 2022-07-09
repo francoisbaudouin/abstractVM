@@ -7,11 +7,7 @@
 
 #include "Parser.hpp"
 #include <fstream>
-#include <iostream>
 #include <regex>
-#include <string>
-
-void half(std::string test = "test") { std::cout << test << std::endl; }
 
 namespace Parser
 {
@@ -21,8 +17,6 @@ namespace Parser
     {
         if (_data.empty())
             _data.clear();
-        if (_functPtr.empty())
-            _functPtr.clear();
     }
 
     int ParssCommand::readData(const std::string path)
@@ -70,11 +64,6 @@ namespace Parser
                 return (false);
             }
         }
-        std::function<void(std::string)> fn1 = half;
-
-        _functPtr["push"] = fn1;
-        std::cout << "test" << std::endl;
-        _functPtr["push"];
 
         return (true);
     }
