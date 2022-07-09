@@ -30,7 +30,8 @@ namespace Parser
 
       protected:
       private:
-        bool _dataAvailable;
+        bool _exitIsCalled = false;
+        bool _allowToWriteData = true;
         std::vector<std::string> _data;
     };
 } // namespace Parser

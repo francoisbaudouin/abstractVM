@@ -47,7 +47,12 @@ namespace Parser
             std::getline(std::cin, line);
             if (line.compare(";;") == 0 || std::cin.eof())
                 break;
-            _data.push_back(line);
+            if (line.compare("exit") == 0) {
+                _exitIsCalled = true;
+                _allowToWriteData = false;
+            }
+            if (_allowToWriteData == true)
+                _data.push_back(line);
         }
         return (0);
     }
