@@ -6,6 +6,7 @@
 */
 
 #include <iostream>
+#include "factory/Factory.hpp"
 #include "parser/Parser.hpp"
 
 int main(int ac, char **argv)
