@@ -12,14 +12,13 @@
 
 bool execution_prog(std::vector<std::string> data)
 {
-    (void)data;
     Parser::Interpretor exec;
 
     for (std::string commandLine : data) {
         std::unordered_map<std::string, std::function<void()>>::const_iterator it =
             exec._functPtr.find(exec.getGivenCommand(commandLine));
         if (it == exec._functPtr.end()) {
-            //throw exception, command is invalid (doesn't exist)
+            // throw exception, command is invalid (doesn't exist)
             return (false);
         } else {
             it->second();

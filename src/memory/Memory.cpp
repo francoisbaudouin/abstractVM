@@ -132,6 +132,8 @@ void AbstractVM::Memory::store(int value)
 
 void AbstractVM::Memory::print()
 {
+    if (_stack.size() < 1)
+        exit(84);
     if (_stack.top()->getType() != 0)
         exit(84);
     int c = std::stoi(_stack.top()->toString());

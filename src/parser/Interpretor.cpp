@@ -14,7 +14,6 @@ namespace Parser
     Interpretor::~Interpretor()
     {
         if (!_functPtr.empty()) {
-            std::cout << "Map clear captain" << std::endl;
             _functPtr.clear();
         }
     }
@@ -23,7 +22,7 @@ namespace Parser
 
     void Interpretor::setValue(std::shared_ptr<int> val) { _val = val; }
 
-    std::string getGivenCommand(std::string commandLine)
+    std::string Interpretor::getGivenCommand(std::string commandLine)
     {
         std::string delimiters = " ";
         std::string token = commandLine.substr(0, commandLine.find(delimiters));
@@ -33,8 +32,9 @@ namespace Parser
 
     bool Interpretor::setDataCommand(std::string commandLine)
     {
-        std::string delimiters = " ";
-        std::string token = commandLine.substr(0, commandLine.find(delimiters));
+        std::string token = commandLine.substr(0, commandLine.find(" "));
+        token = commandLine.substr(0, commandLine.find("("));
+        std::cout << token << std::endl;
         return (true);
     }
 } // namespace Parser
