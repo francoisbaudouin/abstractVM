@@ -32,15 +32,27 @@ namespace Parser
 
     bool Interpretor::setDataCommand(std::string commandLine)
     {
-        std::string delimiters = " ()";
+        std::string delimitersCommand = " ";
+        std::string delimitersEOperand = "(";
+        std::string delimitersValue = ")";
         std::string token;
         size_t position = 0;
-        std::cout << "test" << std::endl;
-        while ((position = commandLine.find(delimiters)) != std::string::npos) {
-            token = token.substr(0, token.find(delimiters));
-            std::cout << token << std::endl;
-            commandLine.erase(0, position + delimiters.length());
-        }
+
+        // here token is equal to eOprand
+        position = commandLine.find(delimitersCommand);
+        commandLine.erase(0, position + delimitersCommand.length());
+        token = commandLine.substr(0, position);
+
+        position = commandLine.find(delimitersEOperand);
+        token = commandLine.substr(0, position);
+        commandLine.erase(0, position + delimitersEOperand.length());
+
+        std::cout << "reste de commande : " << commandLine << std::endl;
+        std::cout << "Ma commande stock : " << commandLine << std::endl;
+
+        position = commandLine.find(delimitersValue);
+        commandLine.erase(0, position + delimitersValue.length());
+        token = commandLine.substr(0, position);
 
         return (true);
     }
