@@ -10,26 +10,23 @@
 #include "parser/Interpretor.hpp"
 #include "parser/Parser.hpp"
 
-void execution_prog(std::vector<std::string> data)
+bool execution_prog(std::vector<std::string> data)
 {
     (void)data;
-    std::cout << "exec" << std::endl;
     Parser::Interpretor exec;
-    std::string test = "add";
-    std::unordered_map<std::string, std::function<void()>>::const_iterator it = exec._functPtr.find("add");
-    std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>> dataCommand;
-    if (it == exec._functPtr.end()) {
-        std::cout << "j'ai pas trouver =(" << std::endl;
-    } else {
-        std::cout << "j'ai trouver !" << std::endl;
-        it->second();
-    }
-    // std::string yolo = "40";
-    // AbstractVM::IOperand *test = AbstractVM::Factory::createOperand(AbstractVM::eOperandType::INT8, yolo);
-    // exec._memory.push(test);
-    // exec._memory.print();
-}
 
+    for (std::string commandLine : data) {
+        std::unordered_map<std::string, std::function<void()>>::const_iterator it =
+            exec._functPtr.find(exec.getGivenCommand(commandLine));
+        if (it == exec._functPtr.end()) {
+            //throw exception, command is invalid (doesn't exist)
+            return (false);
+        } else {
+            it->second();
+        }
+    }
+    return (true);
+}
 
 int main(int ac, char **argv)
 {

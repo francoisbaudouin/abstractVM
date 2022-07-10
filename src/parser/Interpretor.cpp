@@ -22,4 +22,17 @@ namespace Parser
     void Interpretor::setValue(int value) { _value = value; }
 
     void Interpretor::setValue(std::shared_ptr<int> val) { _val = val; }
+
+    std::string getGivenCommand(std::string commandLine)
+    {
+        std::string delimiters = " ";
+        std::string token = commandLine.substr(0, commandLine.find(delimiters));
+
+        return (token);
+    }
+
+    bool Interpretor::setDataCommand(std::string commandLine)
+    {
+        std::string delimiters = " ";
+    }
 } // namespace Parser

@@ -17,16 +17,25 @@ namespace Parser
     class Interpretor {
       public:
         Interpretor();
+
         ~Interpretor();
 
         int getValue(void) { return (_value); }
 
         void setValue(int value);
+
         void setValue(std::shared_ptr<int> val);
 
+        std::string getGivenCommand(std::string commandLine);
+
+        bool setDataCommand(std::string commandLine);
+
         AbstractVM::Memory _memory;
+
         int _value;
+
         std::shared_ptr<int> _val;
+
         std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>> _dataCommand;
 
         std::unordered_map<std::string, std::function<void()>> _functPtr{
