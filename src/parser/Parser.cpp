@@ -26,11 +26,20 @@ namespace Parser
     int ParssCommand::readData(const std::string path)
     {
         std::string line;
+
+        if (!_data.empty()) {
+            return (1);
+        }
         std::ifstream file(path);
 
         if (file.is_open()) {
             while (std::getline(file, line)) {
-                _data.push_back(line);
+                if (line.compare("exit") == 0) {
+                    _exitIsCalled = true;
+                    _allowToWriteData = false;
+                }
+                if (_allowToWriteData == true)
+                    _data.push_back(line);
             }
             file.close();
         } else {
