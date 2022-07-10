@@ -32,9 +32,16 @@ namespace Parser
 
     bool Interpretor::setDataCommand(std::string commandLine)
     {
-        std::string token = commandLine.substr(0, commandLine.find(" "));
-        token = commandLine.substr(0, commandLine.find("("));
-        std::cout << token << std::endl;
+        std::string delimiters = " ()";
+        std::string token;
+        size_t position = 0;
+        std::cout << "test" << std::endl;
+        while ((position = commandLine.find(delimiters)) != std::string::npos) {
+            token = token.substr(0, token.find(delimiters));
+            std::cout << token << std::endl;
+            commandLine.erase(0, position + delimiters.length());
+        }
+
         return (true);
     }
 } // namespace Parser

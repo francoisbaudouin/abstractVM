@@ -21,6 +21,9 @@ bool execution_prog(std::vector<std::string> data)
             // throw exception, command is invalid (doesn't exist)
             return (false);
         } else {
+            std::cout << "plop" << std::endl;
+            exec.setDataCommand(commandLine);
+            return (false);
             it->second();
         }
     }
