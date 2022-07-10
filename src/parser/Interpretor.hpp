@@ -9,6 +9,7 @@
 #define ITERPRETOR_HPP_
 
 #include <functional>
+#include <map>
 #include "memory/Memory.hpp"
 #include <unordered_map>
 
@@ -37,6 +38,11 @@ namespace Parser
         std::shared_ptr<int> _val;
 
         std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>> _dataCommand;
+
+        std::map<std::string, AbstractVM::eOperandType> whatOperandIs{{"int8", AbstractVM::eOperandType::INT8},
+            {"int16", AbstractVM::eOperandType::INT16}, {"int32", AbstractVM::eOperandType::INT32},
+            {"float", AbstractVM::eOperandType::FLOAT}, {"double", AbstractVM::eOperandType::DOUBLE},
+            {"bigdecimal", AbstractVM::eOperandType::BIGDECIMAL}};
 
         std::unordered_map<std::string, std::function<void()>> _functPtr{
             {"push", [this]() { _memory.push(_dataCommand); }}, {"pop", [this]() { _memory.pop(); }},
