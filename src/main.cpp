@@ -15,13 +15,19 @@ void execution_prog(std::vector<std::string> data)
     (void)data;
     std::cout << "exec" << std::endl;
     Parser::Interpretor exec;
-    std::string yolo = "40";
-    AbstractVM::IOperand *test = AbstractVM::Factory::createOperand(AbstractVM::eOperandType::INT8, yolo);
-    exec._memory.push(test);
-    exec._memory.print();
-    for (std::string i : data) {
-        std::cout << "my data is: " << i << std::endl;
+    std::string test = "add";
+    std::unordered_map<std::string, std::function<void()>>::const_iterator it = exec._functPtr.find("add");
+    std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>> _dataCommand;
+    if (it == exec._functPtr.end()) {
+        std::cout << "j'ai pas trouver =(" << std::endl;
+    } else {
+        std::cout << "j'ai trouver !" << std::endl;
+        it->second(_dataCommand);
     }
+    // std::string yolo = "40";
+    // AbstractVM::IOperand *test = AbstractVM::Factory::createOperand(AbstractVM::eOperandType::INT8, yolo);
+    // exec._memory.push(test);
+    // exec._memory.print();
 }
 
 int main(int ac, char **argv)

@@ -11,5 +11,11 @@ namespace Parser
 {
     Interpretor::Interpretor() {}
 
-    Interpretor::~Interpretor() {}
+    Interpretor::~Interpretor() 
+    {
+        if (!_functPtr.empty()) {
+            std::cout << "Map clear captain" << std::endl;
+            _functPtr.clear();
+        }
+    }
 } // namespace Parser
