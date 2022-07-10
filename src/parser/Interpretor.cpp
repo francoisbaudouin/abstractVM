@@ -43,6 +43,8 @@ namespace Parser
         commandLine.erase(0, position + delimitersCommand.length());
         token = commandLine.substr(0, position);
 
+        std::cout << "mon token: " << token << std::endl;
+
         position = commandLine.find(delimitersEOperand);
         token = commandLine.substr(0, position);
         commandLine.erase(0, position + delimitersEOperand.length());
@@ -51,8 +53,11 @@ namespace Parser
         std::cout << "Ma commande stock : " << commandLine << std::endl;
 
         position = commandLine.find(delimitersValue);
-        commandLine.erase(0, position + delimitersValue.length());
         token = commandLine.substr(0, position);
+        //commandLine.erase(0, position + delimitersValue.length());
+
+        std::cout << "reste de commande : " << commandLine << std::endl;
+        std::cout << "Ma commande stock : " << commandLine << std::endl;
 
         return (true);
     }
