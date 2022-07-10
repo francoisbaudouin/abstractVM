@@ -9,10 +9,10 @@
 #define MEMORY_HPP_
 
 #include <iostream>
+#include <memory>
 #include <stack>
 #include <vector>
 #include "IOperand.hpp"
-#include <memory>
 
 namespace AbstractVM
 {
