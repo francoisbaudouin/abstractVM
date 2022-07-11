@@ -21,6 +21,9 @@ namespace AbstractVM
 
         virtual std::string toString() const override;                   // string that represents the instance
         virtual eOperandType getType() const override;                   // returns the type of instance
+
+        std::string infinAdd(std::string frst, std::string scnd) const;
+
         virtual IOperand *operator+(const IOperand &rhs) const override; // sum
         virtual IOperand *operator-(const IOperand &rhs) const override; // difference
         virtual IOperand *operator*(const IOperand &rhs) const override; // product
@@ -28,6 +31,7 @@ namespace AbstractVM
         virtual IOperand *operator%(const IOperand &rhs) const override; // modulo
 
         virtual int getPrecision() const override;
+
 
       protected:
       private:
