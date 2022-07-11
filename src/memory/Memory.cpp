@@ -122,7 +122,7 @@ namespace AbstractVM
         if (_stack.size() < 1)
             exit(84);
         IOperand *saveOpe = _stack.top();
-        if (!(saveOpe->getType() == value->getType() && saveOpe->toString() == value->toString()))
+        if (!(saveOpe->getType() == value->getType()) && (saveOpe->toString() == value->toString()))
             exit(84);
     }
 
