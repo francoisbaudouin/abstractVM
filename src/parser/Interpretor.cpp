@@ -6,6 +6,7 @@
 */
 
 #include "Interpretor.hpp"
+#include "factory/Factory.hpp"
 
 namespace Parser
 {
@@ -18,22 +19,11 @@ namespace Parser
         }
     }
 
-    void Interpretor::setValue(int value) { _value = value; }
-
-    void Interpretor::setValue(std::shared_ptr<int> val) { _val = val; }
-
-    std::string Interpretor::getGivenCommand(std::string commandLine)
+    bool Interpretor::setDataCommand(AbstractVM::eOperandType type, std::string value)
     {
-        std::string delimiters = " ";
-        std::string token = commandLine.substr(0, commandLine.find(delimiters));
+        AbstractVM::Factory tmpFactory;
 
-        return (token);
-    }
-
-    bool Interpretor::setDataCommand(std::tuple<AbstractVM::eOperandType, std::string> data)
-    {
-        _dataCommand->first = std::get<0>(data);
-        _dataCommand->second = std::get<1>(data);
+        _dataCommand = tmpFactory.operands.at(type)(value);
         return (true);
     }
 

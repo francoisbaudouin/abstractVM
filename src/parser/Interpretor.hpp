@@ -29,7 +29,7 @@ namespace Parser
 
         std::string getGivenCommand(std::string commandLine);
 
-        bool setDataCommand(std::tuple<AbstractVM::eOperandType, std::string>);
+        bool setDataCommand(AbstractVM::eOperandType type, std::string data);
 
         AbstractVM::Memory _memory;
 
@@ -37,7 +37,7 @@ namespace Parser
 
         std::shared_ptr<int> _val;
 
-        std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>> _dataCommand;
+        AbstractVM::IOperand *_dataCommand;
 
         std::unordered_map<std::string, std::function<void()>> _functPtr{
             {"push", [this]() { _memory.push(_dataCommand); }}, {"pop", [this]() { _memory.pop(); }},

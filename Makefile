@@ -23,6 +23,7 @@ SRC =	src/main.cpp\
 		src/types/Int16.cpp\
 		src/types/Int32.cpp\
 		src/types/Operand.cpp\
+		src/parser/CommandData.cpp\
 
 SRC_T	=
 
