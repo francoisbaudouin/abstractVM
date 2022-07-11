@@ -21,9 +21,13 @@ namespace Parser
 
     bool Interpretor::setDataCommand(AbstractVM::eOperandType type, std::string value)
     {
-        AbstractVM::Factory tmpFactory;
+        if (type == AbstractVM::eOperandType::UNKNOWN || value.compare("") == 0)
+            return (false);
 
-        _dataCommand = tmpFactory.operands.at(type)(value);
+        if (test == true) {
+            free(_dataCommand);
+        }
+        _dataCommand = AbstractVM::Factory::operands.at(type)(value);
         return (true);
     }
 

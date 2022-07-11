@@ -21,8 +21,10 @@ namespace Parser
 
         std::map<std::string, AbstractVM::eOperandType>::iterator it = _whatEOperandIs.find(type);
 
-        /* if (it == _whatEOperandIs.end())
-            return (false); // operand doesn't exist */
+        if (it == _whatEOperandIs.end())
+            return (false);
+        if (type.compare("") == 0)
+            _type = AbstractVM::eOperandType::UNKNOWN;
         _type = it->second;
         return (true);
     }

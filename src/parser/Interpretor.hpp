@@ -39,6 +39,8 @@ namespace Parser
 
         AbstractVM::IOperand *_dataCommand;
 
+        bool test = false;
+
         std::unordered_map<std::string, std::function<void()>> _functPtr{
             {"push", [this]() { _memory.push(_dataCommand); }}, {"pop", [this]() { _memory.pop(); }},
             {"clear", [this]() { _memory.clear(); }}, {"dup", [this]() { _memory.dup(); }},

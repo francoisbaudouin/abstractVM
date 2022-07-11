@@ -17,7 +17,7 @@ namespace Parser
       public:
         CommandData();
         ~CommandData();
-        bool setter(std::string name, std::string type, std::string value);
+        bool setter(std::string name, std::string type = "", std::string value = "");
 
         std::string getName();
         AbstractVM::eOperandType geteOperant();

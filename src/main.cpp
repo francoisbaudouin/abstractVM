@@ -18,29 +18,14 @@ bool execution_prog(std::vector<Parser::CommandData> &data)
     if (data.empty() == true) {
         return (false);
     }
-    std::cout << "data name: " << data[0].getName() << std::endl;
-    /* try {
-        for (size_t i = 0; i != vecSize; i++) {
-            std::unordered_map<std::string, std::function<void()>>::const_iterator it =
-                exec._functPtr.find(data[i].getName());
-            if (it == exec._functPtr.end()) {
-                return (false);
-            } else {
-                exec.setDataCommand(data[i].geteOperant(), data[i].getValue());
-                it->second();
-            }
-        }
-    } catch (std::out_of_range &e) {
-        std::cout << e.what() << std::endl;
-    } */
-    for (size_t i = 0; i != vecSize - 1; i++) {
-        std::unordered_map<std::string, std::function<void()>>::const_iterator it =
-            exec._functPtr.find(data[i].getName());
+    for (size_t i = 0; i < vecSize; i++) {
+        auto it = exec._functPtr.find(data[i].getName());
         if (it == exec._functPtr.end()) {
             return (false);
         } else {
             exec.setDataCommand(data[i].geteOperant(), data[i].getValue());
             it->second();
+            exec.test = true;
         }
     }
     return (true);
