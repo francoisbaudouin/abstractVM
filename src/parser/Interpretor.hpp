@@ -21,11 +21,7 @@ namespace Parser
 
         ~Interpretor();
 
-        int getValue(void) { return (_value); }
-
-        void setValue(int value);
-
-        void setValue(std::shared_ptr<int> val);
+        int _value;
 
         std::string getGivenCommand(std::string commandLine);
 
@@ -33,13 +29,7 @@ namespace Parser
 
         AbstractVM::Memory _memory;
 
-        int _value;
-
-        std::shared_ptr<int> _val;
-
         AbstractVM::IOperand *_dataCommand;
-
-        bool test = false;
 
         std::unordered_map<std::string, std::function<void()>> _functPtr{
             {"push", [this]() { _memory.push(_dataCommand); }}, {"pop", [this]() { _memory.pop(); }},

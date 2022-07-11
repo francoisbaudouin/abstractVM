@@ -24,9 +24,6 @@ namespace Parser
         if (type == AbstractVM::eOperandType::UNKNOWN || value.compare("") == 0)
             return (false);
 
-        if (test == true) {
-            free(_dataCommand);
-        }
         _dataCommand = AbstractVM::Factory::operands.at(type)(value);
         return (true);
     }
