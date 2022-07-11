@@ -8,10 +8,15 @@
 #ifndef MEMORY_HPP_
 #define MEMORY_HPP_
 
+#include <functional>
 #include <iostream>
+#include <limits>
+#include <map>
 #include <stack>
+#include <tuple>
 #include <vector>
 #include "IOperand.hpp"
+#include <unordered_map>
 
 namespace AbstractVM
 {
@@ -21,6 +26,9 @@ namespace AbstractVM
         ~Memory();
         Memory(const Memory &other) = default;
         Memory &operator=(const Memory &other) = default;
+
+        double getmin(eOperandType type);
+        double getmax(eOperandType type);
 
         void push(IOperand *value);
         void pop();
