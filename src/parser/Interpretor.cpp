@@ -47,11 +47,17 @@ namespace Parser
         position = commandLine.find(delimitersEOperand);
         token = commandLine.substr(0, position);
         commandLine.erase(0, position + delimitersEOperand.length());
+        std::map<std::string, AbstractVM::eOperandType>::const_iterator it = whatEOperandIs.find(token);
+
+        if (it == whatEOperandIs.end()) {
+            // throw excption >
+            return (false);
+        }
 
         // take my value
         position = commandLine.find(delimitersValue);
         token = commandLine.substr(0, position);
-
+        _dataCommand->second = token;
         return (true);
     }
 } // namespace Parser

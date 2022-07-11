@@ -39,7 +39,7 @@ namespace Parser
 
         std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>> _dataCommand;
 
-        std::map<std::string, AbstractVM::eOperandType> whatOperandIs{{"int8", AbstractVM::eOperandType::INT8},
+        std::map<std::string, AbstractVM::eOperandType> whatEOperandIs{{"int8", AbstractVM::eOperandType::INT8},
             {"int16", AbstractVM::eOperandType::INT16}, {"int32", AbstractVM::eOperandType::INT32},
             {"float", AbstractVM::eOperandType::FLOAT}, {"double", AbstractVM::eOperandType::DOUBLE},
             {"bigdecimal", AbstractVM::eOperandType::BIGDECIMAL}};
