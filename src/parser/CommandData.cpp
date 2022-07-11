@@ -9,7 +9,6 @@
 
 namespace Parser
 {
-
     CommandData::CommandData() {}
 
     CommandData::~CommandData() {}
