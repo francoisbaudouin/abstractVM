@@ -6,33 +6,78 @@
 */
 
 #include "Memory.hpp"
+#include "exception/Exception.hpp"
 
 namespace AbstractVM
 {
-    std::map<eOperandType, std::tuple<signed char, signed char>> _limits{
-        std::pair<eOperandType, std::tuple<signed char, signed char>>(
-            INT8, {std::numeric_limits<int8_t>::min(), std::numeric_limits<int8_t>::max()}),
-        std::pair<eOperandType, std::tuple<signed char, signed char>>(
-            INT16, {std::numeric_limits<int16_t>::min(), std::numeric_limits<int16_t>::max()}),
-        std::pair<eOperandType, std::tuple<signed char, signed char>>(
-            INT32, {std::numeric_limits<int32_t>::min(), std::numeric_limits<int32_t>::max()}),
-        std::pair<eOperandType, std::tuple<signed char, signed char>>(
-            FLOAT, {std::numeric_limits<float>::min(), std::numeric_limits<float>::max()}),
-        std::pair<eOperandType, std::tuple<signed char, signed char>>(
-            DOUBLE, {std::numeric_limits<double>::min(), std::numeric_limits<double>::max()}),
-        std::pair<eOperandType, std::tuple<signed char, signed char>>(
-            BIGDECIMAL, {std::numeric_limits<double>::min(), std::numeric_limits<double>::max()}),
-    };
-
-    Memory::Memory() {}
+    Memory::Memory(){}
 
     Memory::~Memory() {}
 
+    double Memory::getmin(eOperandType type)
+    {
+        double min = 0;
+        switch (type)
+        {
+        case INT8:
+            min = std::numeric_limits<int8_t>::min();
+            break;
+        case INT16:
+            min = std::numeric_limits<int16_t>::min();
+            break;
+        case INT32:
+            min = std::numeric_limits<int32_t>::min();
+            break;
+        case FLOAT:
+            min = std::numeric_limits<float>::min();
+            break;
+        case DOUBLE:
+            min = std::numeric_limits<double>::min();
+            break;
+        case BIGDECIMAL:
+            min = std::numeric_limits<double>::min();
+            break;
+        default:
+            break;
+        }
+        return (min);
+    }
+
+    double Memory::getmax(eOperandType type)
+    {
+        double max = 0;
+        switch (type)
+        {
+        case INT8:
+            max = std::numeric_limits<int8_t>::max();
+            break;
+        case INT16:
+            max = std::numeric_limits<int16_t>::max();
+            break;
+        case INT32:
+            max = std::numeric_limits<int32_t>::max();
+            break;
+        case FLOAT:
+            max = std::numeric_limits<float>::max();
+            break;
+        case DOUBLE:
+            max = std::numeric_limits<double>::max();
+            break;
+        case BIGDECIMAL:
+            max = std::numeric_limits<double>::max();
+            break;
+        default:
+            break;
+        }
+        return (max);
+    }
+
     void Memory::push(IOperand *value)
     {
-        if (!((std::stod(value->toString()) < std::get<0>(_limits[value->getType()]))
-                && (std::stod(value->toString()) > std::get<1>(_limits[value->getType()]))))
-            exit(84);
+        if (std::stod(value->toString()) < getmin(value->getType()))
+            throw Test("Underflow");
+        if (std::stod(value->toString()) > getmax(value->getType()))
+            throw Test("Overflow");
         _stack.push(value);
     }
 
@@ -68,10 +113,36 @@ namespace AbstractVM
         push(save2);
     }
 
+    void printInt(IOperand *ope)
+    {
+        for (size_t i = 0; i < ope->toString().size(); i++) {
+            if (ope->toString().at(i) == '.')
+                break;
+            std::cout << ope->toString().at(i);
+        }
+        std::cout << std::endl;
+    }
+
+    void printPrecision(IOperand *ope)
+    {
+        int maxPrecs = 0;
+        for (size_t i = 0; i < ope->toString().size(); i++) {
+            if (ope->toString().at(i) == '.') {
+                std::cout << ope->toString().at(i);
+                i++;
+            }
+            if (maxPrecs < ope->getPrecision())
+                break;
+            std::cout << ope->toString().at(i);
+        }
+        std::cout << std::endl;
+    }
+
     void Memory::dump() const
     {
-        for (std::stack<IOperand *> newStack = _stack; !newStack.empty(); newStack.pop())
-            std::cout << newStack.top()->toString() << '\n';
+        for (std::stack<IOperand *> newStack = _stack; !newStack.empty(); newStack.pop()) {
+            newStack.top()->getType() < 4 ? printInt(newStack.top()) : printPrecision(newStack.top());
+        }
     }
 
     void Memory::assert(IOperand *value) const

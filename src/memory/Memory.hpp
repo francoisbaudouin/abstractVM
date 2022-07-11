@@ -11,9 +11,11 @@
 #include <iostream>
 #include <limits>
 #include <map>
+#include <unordered_map>
 #include <stack>
 #include <tuple>
 #include <vector>
+#include <functional>
 #include "IOperand.hpp"
 
 namespace AbstractVM
@@ -24,6 +26,9 @@ namespace AbstractVM
         ~Memory();
         Memory(const Memory &other) = default;
         Memory &operator=(const Memory &other) = default;
+
+        double getmin(eOperandType type);
+        double getmax(eOperandType type);
 
         void push(IOperand *value);
         void pop();
@@ -47,7 +52,6 @@ namespace AbstractVM
         std::vector<IOperand *> _register{
             NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
         std::stack<IOperand *> _stack;
-        std::map<eOperandType, std::tuple<signed char, signed char>> _limits;
     };
 } // namespace AbstractVM
 
