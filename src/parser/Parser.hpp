@@ -30,9 +30,11 @@ namespace Parser
 
       protected:
       private:
+        bool _setUpCommand(std::smatch match);
         bool _exitIsCalled;
         bool _allowToWriteData;
         std::vector<std::string> _data;
+        std::map<std::string, AbstractVM::eOperandType, std::string> _dataCommand;
     };
 } // namespace Parser
 

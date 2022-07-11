@@ -8,6 +8,7 @@
 #include "Parser.hpp"
 #include <fstream>
 #include <regex>
+#include "IOperand.hpp"
 
 namespace Parser
 {
@@ -72,18 +73,29 @@ namespace Parser
 
     const std::vector<std::string> ParssCommand::getData() { return (this->_data); }
 
+    bool ParssCommand::_setUpCommand(std::smatch match)
+    {
+        for (size_t iterator = 0; iterator != match.size(); iterator++) {}
+    }
+
     bool ParssCommand::checkProvideData()
     {
         if (_exitIsCalled == false)
             return (false);
-        std::regex const reg("([a-z-;]*)(\\s*(([a-z]+[0-9]?)*)\\((\\d*\\.?\\d*)\\))?"); // new regex
+        std::regex const reg("([a-z]*)(\\s*(([a-z]+[0-9]?)*)\\((\\d*\\.?\\d*)\\))?"); // new regex
+        std::smatch match;
 
-        for (std::string i : _data) {
-            if (std::regex_match(i, reg) == false) {
+        for (std::string str : _data) {
+            /* if (std::regex_match(str, reg) == false) {
                 // throw execption
+                return (false);
+            } */
+            if (std::regex_search(str, match, reg) == true) {
+            } else {
                 return (false);
             }
         }
+
         return (true);
     }
 

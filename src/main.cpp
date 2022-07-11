@@ -22,7 +22,6 @@ bool execution_prog(std::vector<std::string> data)
             return (false);
         } else {
             exec.setDataCommand(commandLine);
-            return (false);
             it->second();
         }
     }
