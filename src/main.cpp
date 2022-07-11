@@ -21,7 +21,7 @@ bool execution_prog(std::vector<std::string> data)
             // throw exception, command is invalid (doesn't exist)
             return (false);
         } else {
-            exec.setDataCommand(commandLine);
+            //exec.setDataCommand(commandLine);
             it->second();
         }
     }
@@ -43,6 +43,6 @@ int main(int ac, char **argv)
     }
     if (pars.checkProvideData() == false)
         return (84);
-    execution_prog(pars.getData());
+    //execution_prog(pars.getData());
     return 0;
 }

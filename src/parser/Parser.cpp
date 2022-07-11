@@ -7,8 +7,6 @@
 
 #include "Parser.hpp"
 #include <fstream>
-#include <regex>
-#include "IOperand.hpp"
 
 namespace Parser
 {
@@ -73,9 +71,26 @@ namespace Parser
 
     const std::vector<std::string> ParssCommand::getData() { return (this->_data); }
 
+    std::tuple<AbstractVM::eOperandType, std::string> ParssCommand::_getdataCommand(
+        std::string eoprand, std::string value)
+    {
+        if (eoprand.empty() == 0 && value.empty() == 0)
+            return (std::make_tuple(AbstractVM::eOperandType::UNKNOWN, ""));
+        std::map<std::string, AbstractVM::eOperandType>::const_iterator it = _whatEOperandIs.find(eoprand);
+        /* if (it == _whatEOperandIs.end())
+            throw _getdataCommand("Operant doesn't exist"); */
+        return (std::make_tuple(it->second, value));
+    }
+
     bool ParssCommand::_setUpCommand(std::smatch match)
     {
-        for (size_t iterator = 0; iterator != match.size(); iterator++) {}
+        std::string nullStr;
+        switch (match.size()) {
+            case (1): _dataCommand.insert({match.str(1), _getdataCommand(" ", " ")}); break;
+            case (3): _dataCommand.insert({match.str(1), _getdataCommand(match.str(3), match.str(5))}); break;
+            default: break;
+        }
+        return (true);
     }
 
     bool ParssCommand::checkProvideData()
@@ -86,14 +101,13 @@ namespace Parser
         std::smatch match;
 
         for (std::string str : _data) {
-            /* if (std::regex_match(str, reg) == false) {
+            if (std::regex_match(str, reg) == false) {
                 // throw execption
                 return (false);
-            } */
-            if (std::regex_search(str, match, reg) == true) {
-            } else {
-                return (false);
             }
+            if (std::regex_search(str, match, reg) != true)
+                return (false);
+            _setUpCommand(match);
         }
 
         return (true);
