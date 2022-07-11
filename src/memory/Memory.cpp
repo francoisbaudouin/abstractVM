@@ -10,35 +10,21 @@
 
 namespace AbstractVM
 {
-    Memory::Memory(){}
+    Memory::Memory() {}
 
     Memory::~Memory() {}
 
     double Memory::getmin(eOperandType type)
     {
         double min = 0;
-        switch (type)
-        {
-        case INT8:
-            min = std::numeric_limits<int8_t>::min();
-            break;
-        case INT16:
-            min = std::numeric_limits<int16_t>::min();
-            break;
-        case INT32:
-            min = std::numeric_limits<int32_t>::min();
-            break;
-        case FLOAT:
-            min = std::numeric_limits<float>::min();
-            break;
-        case DOUBLE:
-            min = std::numeric_limits<double>::min();
-            break;
-        case BIGDECIMAL:
-            min = std::numeric_limits<double>::min();
-            break;
-        default:
-            break;
+        switch (type) {
+            case INT8: min = std::numeric_limits<int8_t>::min(); break;
+            case INT16: min = std::numeric_limits<int16_t>::min(); break;
+            case INT32: min = std::numeric_limits<int32_t>::min(); break;
+            case FLOAT: min = std::numeric_limits<float>::min(); break;
+            case DOUBLE: min = std::numeric_limits<double>::min(); break;
+            case BIGDECIMAL: min = std::numeric_limits<double>::min(); break;
+            default: break; // throw exection
         }
         return (min);
     }
@@ -46,28 +32,14 @@ namespace AbstractVM
     double Memory::getmax(eOperandType type)
     {
         double max = 0;
-        switch (type)
-        {
-        case INT8:
-            max = std::numeric_limits<int8_t>::max();
-            break;
-        case INT16:
-            max = std::numeric_limits<int16_t>::max();
-            break;
-        case INT32:
-            max = std::numeric_limits<int32_t>::max();
-            break;
-        case FLOAT:
-            max = std::numeric_limits<float>::max();
-            break;
-        case DOUBLE:
-            max = std::numeric_limits<double>::max();
-            break;
-        case BIGDECIMAL:
-            max = std::numeric_limits<double>::max();
-            break;
-        default:
-            break;
+        switch (type) {
+            case INT8: max = std::numeric_limits<int8_t>::max(); break;
+            case INT16: max = std::numeric_limits<int16_t>::max(); break;
+            case INT32: max = std::numeric_limits<int32_t>::max(); break;
+            case FLOAT: max = std::numeric_limits<float>::max(); break;
+            case DOUBLE: max = std::numeric_limits<double>::max(); break;
+            case BIGDECIMAL: max = std::numeric_limits<double>::max(); break;
+            default: break; // throw exection
         }
         return (max);
     }

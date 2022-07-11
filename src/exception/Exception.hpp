@@ -25,7 +25,7 @@ namespace AbstractVM
     };
 
     class Test : public Exception {
-      public :
+      public:
         Test(std::string const &msg);
     };
 } // namespace AbstractVM

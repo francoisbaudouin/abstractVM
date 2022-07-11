@@ -8,15 +8,15 @@
 #ifndef MEMORY_HPP_
 #define MEMORY_HPP_
 
+#include <functional>
 #include <iostream>
 #include <limits>
 #include <map>
-#include <unordered_map>
 #include <stack>
 #include <tuple>
 #include <vector>
-#include <functional>
 #include "IOperand.hpp"
+#include <unordered_map>
 
 namespace AbstractVM
 {
