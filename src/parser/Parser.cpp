@@ -7,13 +7,14 @@
 
 #include "Parser.hpp"
 #include <fstream>
-#include <iostream>
-#include <regex>
-#include <string>
 
 namespace Parser
 {
-    ParssCommand::ParssCommand() {}
+    ParssCommand::ParssCommand()
+    {
+        _exitIsCalled = false;
+        _allowToWriteData = true;
+    }
 
     ParssCommand::~ParssCommand()
     {
@@ -24,11 +25,20 @@ namespace Parser
     int ParssCommand::readData(const std::string path)
     {
         std::string line;
+
+        if (!_data.empty()) {
+            return (1);
+        }
         std::ifstream file(path);
 
         if (file.is_open()) {
             while (std::getline(file, line)) {
-                _data.push_back(line);
+                if (line.compare("exit") == 0) {
+                    _exitIsCalled = true;
+                    _allowToWriteData = false;
+                }
+                if (_allowToWriteData == true)
+                    _data.push_back(line);
             }
             file.close();
         } else {
@@ -49,24 +59,40 @@ namespace Parser
             std::getline(std::cin, line);
             if (line.compare(";;") == 0 || std::cin.eof())
                 break;
-            _data.push_back(line);
+            if (line.compare("exit") == 0) {
+                _exitIsCalled = true;
+                _allowToWriteData = false;
+            }
+            if (_allowToWriteData == true)
+                _data.push_back(line);
         }
         return (0);
     }
 
-    const std::vector<std::string> ParssCommand::getData() { return (this->_data); }
+    bool ParssCommand::_setUpCommand(std::smatch &match)
+    {
+        CommandData command;
+        command.setter(match.str(1), match.str(3), match.str(5));
 
+        _dataCommand.push_back(command);
+        return (true);
+    }
+
+    std::vector<CommandData> &ParssCommand::getDataCommand() { return (_dataCommand); }
     bool ParssCommand::checkProvideData()
     {
-        std::regex const patternCommandWithData("(push|assert) (int8|int16|int32|int64|float|double|bigDecimal)");
-        std::regex const patternSimpleCommand("(;|pop|clear|dup|swap|dump|add|sub|mul|div|mod|print|exit)");
-        std::regex const patternRegistre("(load|store)");
-        for (std::string i : _data) {
-            if (std::regex_search(i, patternCommandWithData) == false
-                && std::regex_search(i, patternSimpleCommand) == false
-                && std::regex_search(i, patternRegistre) == false) {
+        if (_exitIsCalled == false)
+            return (false);
+        std::regex const reg("([a-z]*)(\\s*(([a-z]+\\d*?)*)\\((\\d+\\.?\\d*)\\))?"); // new regex
+        std::smatch match;
+
+        for (std::string str : _data) {
+            if (std::regex_match(str, reg) == false) {
                 return (false);
             }
+            if (std::regex_search(str, match, reg) != true)
+                return (false);
+            _setUpCommand(match);
         }
         return (true);
     }
