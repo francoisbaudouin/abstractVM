@@ -78,10 +78,7 @@ namespace Parser
         return (true);
     }
 
-    std::vector<CommandData> &ParssCommand::getDataCommand() 
-    {
-        return (_dataCommand);
-    }
+    std::vector<CommandData> &ParssCommand::getDataCommand() { return (_dataCommand); }
     bool ParssCommand::checkProvideData()
     {
         if (_exitIsCalled == false)
