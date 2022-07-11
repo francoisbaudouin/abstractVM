@@ -10,18 +10,16 @@
 #include "parser/Interpretor.hpp"
 #include "parser/Parser.hpp"
 
-bool execution_prog(std::vector<std::string> data)
+bool execution_prog(std::map<std::string, std::tuple<AbstractVM::eOperandType, std::string>> data)
 {
     Parser::Interpretor exec;
-
-    for (std::string commandLine : data) {
+    for (auto const &[key, value] : data) {
         std::unordered_map<std::string, std::function<void()>>::const_iterator it =
-            exec._functPtr.find(exec.getGivenCommand(commandLine));
+            exec._functPtr.find(exec.getGivenCommand(key));
         if (it == exec._functPtr.end()) {
-            // throw exception, command is invalid (doesn't exist)
             return (false);
         } else {
-            //exec.setDataCommand(commandLine);
+            // exec.setDataCommand(commandLine);
             it->second();
         }
     }
@@ -43,6 +41,6 @@ int main(int ac, char **argv)
     }
     if (pars.checkProvideData() == false)
         return (84);
-    //execution_prog(pars.getData());
+    execution_prog(pars.getDataCommand());
     return 0;
 }

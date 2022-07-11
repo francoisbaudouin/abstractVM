@@ -69,7 +69,10 @@ namespace Parser
         return (0);
     }
 
-    const std::vector<std::string> ParssCommand::getData() { return (this->_data); }
+    const std::map<std::string, std::tuple<AbstractVM::eOperandType, std::string>> ParssCommand::getDataCommand()
+    {
+        return (this->_dataCommand);
+    }
 
     std::tuple<AbstractVM::eOperandType, std::string> ParssCommand::_getdataCommand(
         std::string eoprand, std::string value)

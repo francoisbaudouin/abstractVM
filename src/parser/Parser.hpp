@@ -27,9 +27,9 @@ namespace Parser
         // read Data from input and write in dataInput.avm
         int readData();
 
-        const std::vector<std::string> getData();
-
         bool checkProvideData();
+
+        const std::map<std::string, std::tuple<AbstractVM::eOperandType, std::string>> getDataCommand();
 
       protected:
       private:
