@@ -15,14 +15,31 @@ AbstractVM::Test::Test(std::string const &msg) : Exception(msg) {}
 
 AbstractVM::EmptyStack::EmptyStack(std::string const &msg) : Exception("error: " + msg + " on empty stack.") {}
 
-AbstractVM::InvalideSize::InvalideSize(std::string const &msg) : Exception("error: " + msg + " on a stack with a size less than 2 values") {}
+AbstractVM::InvalideSize::InvalideSize(std::string const &msg)
+    : Exception("error: " + msg + " on a stack with a size less than 2 values")
+{
+}
 
-AbstractVM::AssertException::AssertException(std::string const &msg) : Exception("error: " + msg + " : not the same values") {}
+AbstractVM::AssertException::AssertException(std::string const &msg)
+    : Exception("error: " + msg + " : not the same values")
+{
+}
 
-AbstractVM::InvalidType::InvalidType(std::string const &msg) : Exception("error: " + msg + " : The top value should be an INT8") {}
+AbstractVM::InvalidType::InvalidType(std::string const &msg)
+    : Exception("error: " + msg + " : The top value should be an INT8")
+{
+}
 
-AbstractVM::EmptyRegister::EmptyRegister(std::string const &msg) : Exception("error: " + msg + " on an empty register") {}
+AbstractVM::EmptyRegister::EmptyRegister(std::string const &msg) : Exception("error: " + msg + " on an empty register")
+{
+}
 
-AbstractVM::Underflow::Underflow(std::string const &msg, double minValue) : Exception("error: " + msg + "the value should be greater than" + std::to_string(minValue)) {}
+AbstractVM::Underflow::Underflow(std::string const &msg, double minValue)
+    : Exception("error: " + msg + "the value should be greater than" + std::to_string(minValue))
+{
+}
 
-AbstractVM::Overflow::Overflow(std::string const &msg, double minValue) : Exception("error: " + msg + "the value should be lower than" + std::to_string(minValue)) {}
+AbstractVM::Overflow::Overflow(std::string const &msg, double minValue)
+    : Exception("error: " + msg + "the value should be lower than" + std::to_string(minValue))
+{
+}
