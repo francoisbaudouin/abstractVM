@@ -43,3 +43,13 @@ AbstractVM::Overflow::Overflow(std::string const &msg, double minValue)
     : Exception("error: " + msg + "the value should be lower than" + std::to_string(minValue))
 {
 }
+
+AbstractVM::InvalidFile::InvalidFile(std::string const &msg)
+    : Exception("error: " + msg + " : File doesn't exist or any other occurred")
+{
+}
+
+AbstractVM::ParssingFile::ParssingFile(std::string const &msg)
+    : Exception("error: " + msg + " : parssing part have problème")
+{
+}

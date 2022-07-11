@@ -121,7 +121,7 @@ namespace AbstractVM
         if (_stack.size() < 1)
             throw EmptyStack("assert");
         IOperand *saveOpe = _stack.top();
-        if (!(saveOpe->getType() == value->getType() && saveOpe->toString() == value->toString()))
+        if (!(saveOpe->getType() == value->getType()) && (saveOpe->toString() == value->toString()))
             throw AssertException("assert");
     }
 

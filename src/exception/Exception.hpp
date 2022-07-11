@@ -63,6 +63,16 @@ namespace AbstractVM
         Overflow(std::string const &msg, double minValue);
     };
 
+    class ParssingFile : public Exception {
+      public:
+        ParssingFile(std::string const &msg);
+    };
+
+    class InvalidFile : public Exception {
+      public:
+        InvalidFile(std::string const &msg);
+    };
+
 } // namespace AbstractVM
 
 #endif /* !EXCEPTION_HPP_ */
