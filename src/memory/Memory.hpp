@@ -12,11 +12,11 @@
 #include <iostream>
 #include <limits>
 #include <map>
+#include <memory>
 #include <stack>
 #include <tuple>
 #include <vector>
 #include "IOperand.hpp"
-#include <unordered_map>
 
 namespace AbstractVM
 {
