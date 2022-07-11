@@ -8,9 +8,13 @@
 #ifndef MEMORY_HPP_
 #define MEMORY_HPP_
 
+#include <functional>
 #include <iostream>
+#include <limits>
+#include <map>
 #include <memory>
 #include <stack>
+#include <tuple>
 #include <vector>
 #include "IOperand.hpp"
 
@@ -23,14 +27,16 @@ namespace AbstractVM
         Memory(const Memory &other) = default;
         Memory &operator=(const Memory &other) = default;
 
+        double getmin(eOperandType type);
+        double getmax(eOperandType type);
+
         void push(IOperand *value);
-        void push(std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>> data);
         void pop();
         void clear();
         void dup();
         void swap();
         void dump() const;
-        void assert(std::shared_ptr<std::pair<AbstractVM::eOperandType, std::string>> data) const;
+        void assert(IOperand *value) const;
         void add();
         void sub();
         void mul();

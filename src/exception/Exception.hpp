@@ -16,15 +16,17 @@ namespace AbstractVM
     class Exception : public std::exception {
       public:
         Exception(std::string const &msg) throw();
-        virtual ~Exception() throw();
-        Exception(const Exception &other) = default;
-        Exception &operator=(const Exception &other) = default;
 
-        virtual const char *what() const throw();
+        const char *what() const throw();
 
       protected:
       private:
         std::string _str;
+    };
+
+    class Test : public Exception {
+      public:
+        Test(std::string const &msg);
     };
 } // namespace AbstractVM
 
