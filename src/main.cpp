@@ -19,7 +19,7 @@ bool execution_prog(std::map<std::string, std::tuple<AbstractVM::eOperandType, s
         if (it == exec._functPtr.end()) {
             return (false);
         } else {
-            // exec.setDataCommand(commandLine);
+            exec.setDataCommand(value);
             it->second();
         }
     }
@@ -39,8 +39,9 @@ int main(int ac, char **argv)
     } else {
         pars.readData();
     }
-    if (pars.checkProvideData() == false)
+    if (pars.checkProvideData() == false) {
         return (84);
+    }
     execution_prog(pars.getDataCommand());
     return 0;
 }

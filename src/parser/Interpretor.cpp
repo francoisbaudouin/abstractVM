@@ -30,49 +30,11 @@ namespace Parser
         return (token);
     }
 
-    //    bool Interpretor::setDataCommand(std::string commandLine)
-    //    {
-    //        std::vector<std::string> delimiters{" ", "(", ")"};
-    //        std::string delimitersCommand = " ";
-    //        std::string delimitersEOperand = "(";
-    //        std::string delimitersValue = ")";
-    //        std::string token;
-    //        size_t position = 0;
-    //        int nmIteration;
-    //
-    //        for (const std::string &str : delimiters) {
-    //            while (position != std::string::npos) {
-    //                position = commandLine.find(str);
-    //                token = commandLine.substr(0, position);
-    //                commandLine.erase(0, position + str.length());
-    //                switch (nmIteration)
-    //                {
-    //                case (1):
-    //                    /* code */
-    //                    break;
-    //
-    //                default:
-    //                    break;
-    //                }
-    //            }
-    //        }
-    //        // rm command
-    //
-    //        // take my eOprand
-    //        position = commandLine.find(delimitersEOperand);
-    //        token = commandLine.substr(0, position);
-    //        commandLine.erase(0, position + delimitersEOperand.length());
-    //        std::map<std::string, AbstractVM::eOperandType>::const_iterator it = whatEOperandIs.find(token);
-    //        if (it == whatEOperandIs.end()) {
-    //            // throw excption >
-    //            return (false);
-    //        }
-    //        _dataCommand->first = it->second;
-    //
-    //        // take my value
-    //        position = commandLine.find(delimitersValue);
-    //        token = commandLine.substr(0, position);
-    //        _dataCommand->second = token;
-    //        return (true);
-    //    }
+    bool Interpretor::setDataCommand(std::tuple<AbstractVM::eOperandType, std::string> data)
+    {
+        _dataCommand->first = std::get<0>(data);
+        _dataCommand->second = std::get<1>(data);
+        return (true);
+    }
+
 } // namespace Parser

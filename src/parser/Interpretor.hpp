@@ -29,7 +29,7 @@ namespace Parser
 
         std::string getGivenCommand(std::string commandLine);
 
-        bool setDataCommand(std::string commandLine);
+        bool setDataCommand(std::tuple<AbstractVM::eOperandType, std::string>);
 
         AbstractVM::Memory _memory;
 
