@@ -38,26 +38,19 @@ namespace Parser
         std::string token;
         size_t position = 0;
 
-        // here token is equal to eOprand
+        // rm command
         position = commandLine.find(delimitersCommand);
-        commandLine.erase(0, position + delimitersCommand.length());
         token = commandLine.substr(0, position);
+        commandLine.erase(0, position + delimitersCommand.length());
 
-        std::cout << "mon token: " << token << std::endl;
-
+        // take my eOprand
         position = commandLine.find(delimitersEOperand);
         token = commandLine.substr(0, position);
         commandLine.erase(0, position + delimitersEOperand.length());
 
-        std::cout << "reste de commande : " << commandLine << std::endl;
-        std::cout << "Ma commande stock : " << commandLine << std::endl;
-
+        // take my value
         position = commandLine.find(delimitersValue);
         token = commandLine.substr(0, position);
-        //commandLine.erase(0, position + delimitersValue.length());
-
-        std::cout << "reste de commande : " << commandLine << std::endl;
-        std::cout << "Ma commande stock : " << commandLine << std::endl;
 
         return (true);
     }
