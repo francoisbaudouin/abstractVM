@@ -21,13 +21,11 @@ namespace Parser
 
         ~Interpretor();
 
-        int _value;
-
-        std::string getGivenCommand(std::string commandLine);
-
         bool setDataCommand(AbstractVM::eOperandType type, std::string data);
 
         AbstractVM::Memory _memory;
+
+        int _value;
 
         AbstractVM::IOperand *_dataCommand;
 

@@ -25,7 +25,6 @@ bool execution_prog(std::vector<Parser::CommandData> &data)
         } else {
             exec.setDataCommand(data[i].geteOperant(), data[i].getValue());
             it->second();
-            exec.test = true;
         }
     }
     return (true);
