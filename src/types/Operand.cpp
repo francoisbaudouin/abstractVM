@@ -167,6 +167,8 @@ int getbigger(std::string frst, std::string scnd)
     std::string frstB = std::get<0>(frstTuple) + std::get<1>(frstTuple);
     std::string scndB = std::get<0>(scndTuple) + std::get<1>(scndTuple);
 
+    if (frstB.compare(scndB) == 0)
+        return (3);
     for (size_t i = 0; i < frstB.size(); i++) {
         if (frstB.at(i) != scndB.at(i)) {
             if (frstB.at(i) > scndB.at(i))
@@ -177,7 +179,7 @@ int getbigger(std::string frst, std::string scnd)
     return (1);
 }
 
-std::string AbstractVM::Operand::opeManagement(std::string frst, std::string scnd) const
+std::string AbstractVM::Operand::opeManagementAdd(std::string frst, std::string scnd) const
 {
     std::tuple<int, int> strSign = getsign(frst, scnd);
 
@@ -186,24 +188,49 @@ std::string AbstractVM::Operand::opeManagement(std::string frst, std::string scn
 
     int mSize = getbigger(frst, scnd);
 
+    if (mSize == 3 && std::tuple<int, int>{1,1} == strSign)
+        return (infinAdd(frst,scnd).insert(0,"-"));
+
     if (strSign == std::tuple<int, int>{0,1} && mSize == 0) {
-        std::cout << 1 << std::endl;
         return (infinSub(scnd,frst).insert(0,"-"));
     } else if (strSign == std::tuple<int, int>{1,0} && mSize == 0) {
-        std::cout << 2 << std::endl;
         return (infinSub(scnd,frst));
     } else if (strSign == std::tuple<int, int>{0,1} && mSize == 1) {
-        std::cout << 3 << std::endl;
         return (infinSub(frst,scnd));
     } else if (strSign == std::tuple<int, int>{1,1} && mSize == 0) {
-        std::cout << 4 << std::endl;
         return (infinAdd(frst,scnd).insert(0,"-"));
     } else if (strSign == std::tuple<int, int>{0,0}) {
-        std::cout << 5 << std::endl;
         return (infinAdd(frst,scnd));
     } else {
-        std::cout << 6 << std::endl;
         return (infinSub(frst,scnd).insert(0,"-"));
+    }
+}
+
+std::string AbstractVM::Operand::opeManagementSub(std::string frst, std::string scnd) const
+{
+    std::tuple<int, int> strSign = getsign(frst, scnd);
+
+    frst.erase(remove(frst.begin(), frst.end(), '-'), frst.end());
+    scnd.erase(remove(scnd.begin(), scnd.end(), '-'), scnd.end());
+
+    int mSize = getbigger(frst, scnd);
+
+    if (mSize == 3 && std::tuple<int, int>{1,1} == strSign)
+        return (infinAdd(frst,scnd).insert(0,"-"));
+
+
+    if (strSign == std::tuple<int, int>{1,1} && mSize == 1) {
+        return (infinSub(frst,scnd).insert(0,"-"));
+    } else if (strSign == std::tuple<int, int>{0,0} && mSize == 1) {
+        return (infinSub(frst,scnd));
+    } else if (strSign == std::tuple<int, int>{0,1}) {
+        return (infinAdd(frst,scnd));
+    } else if (strSign == std::tuple<int, int>{1,0}) {
+        return (infinAdd(frst,scnd).insert(0,"-"));
+    } else if (strSign == std::tuple<int, int>{0,0} && mSize == 0) {
+        return (infinSub(scnd,frst).insert(0,"-"));
+    } else {
+        return (infinSub(scnd,frst));
     }
 }
 
@@ -215,7 +242,7 @@ AbstractVM::IOperand *AbstractVM::Operand::operator+(const AbstractVM::IOperand 
     std::string ope1 = this->toString();
     std::string ope2 = rhs.toString();
 
-    std::string newValue = opeManagement(ope1, ope2);
+    std::string newValue = opeManagementAdd(ope1, ope2);
 
     if (this->getPrecision() < rhs.getPrecision())
         newope = factory->createOperand(rhs.getType(), newValue);
@@ -229,10 +256,10 @@ AbstractVM::IOperand *AbstractVM::Operand::operator-(const AbstractVM::IOperand 
     IOperand *newope;
     AbstractVM::Factory *factory = new AbstractVM::Factory();
 
-    std::string ope1 = rhs.toString();
-    std::string ope2 = this->toString();
+    std::string ope1 = this->toString();
+    std::string ope2 = rhs.toString();
 
-    std::string newValue = infinSub(ope1, ope2);
+    std::string newValue = opeManagementSub(ope1, ope2);
 
     if (this->getPrecision() < rhs.getPrecision())
         newope = factory->createOperand(rhs.getType(), newValue);

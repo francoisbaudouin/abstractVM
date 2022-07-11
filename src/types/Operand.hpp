@@ -24,7 +24,8 @@ namespace AbstractVM
 
         std::string infinAdd(std::string frst, std::string scnd) const;
         std::string infinSub(std::string frst, std::string scnd) const;
-        std::string opeManagement(std::string frst, std::string scnd) const;
+        std::string opeManagementAdd(std::string frst, std::string scnd) const;
+        std::string opeManagementSub(std::string frst, std::string scnd) const;
         virtual IOperand *operator+(const IOperand &rhs) const override; // sum
         virtual IOperand *operator-(const IOperand &rhs) const override; // difference
         virtual IOperand *operator*(const IOperand &rhs) const override; // product
