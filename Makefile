@@ -25,7 +25,19 @@ SRC =	src/main.cpp\
 		src/types/Operand.cpp\
 		src/parser/CommandData.cpp\
 
-SRC_T	=
+SRC_T	= src/exception/Exception.cpp\
+		src/factory/Factory.cpp\
+		src/memory/Memory.cpp\
+		src/parser/Parser.cpp\
+		src/parser/Interpretor.cpp\
+		src/types/BigDecimal.cpp\
+		src/types/Double.cpp\
+		src/types/Float.cpp\
+		src/types/Int8.cpp\
+		src/types/Int16.cpp\
+		src/types/Int32.cpp\
+		src/types/Operand.cpp\
+		src/parser/CommandData.cpp\
 
 OBJ	=	$(SRC:.cpp=.o)
 
@@ -56,6 +68,6 @@ clean_test:
 tests_run: fclean
 	$(CC) -o $(TEST_N) $(SRC_T) $(TFLAGS)
 	./unit_tests
-	gcovr --exclude tests/
+	gcovr --exclude tests/s
 
 .PHONY : all main clean fclean
