@@ -26,7 +26,7 @@ namespace Parser
     {
         std::string line;
 
-        if (!_data.empty()) {
+        if (_data.empty() == false) {
             return (1);
         }
         std::ifstream file(path);

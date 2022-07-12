@@ -41,4 +41,5 @@ build
 # Test obj file
 *.gcno
 *.gcda
+unit_tests
 

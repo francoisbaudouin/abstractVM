@@ -21,6 +21,7 @@ bool execution_prog(std::vector<Parser::CommandData> &data)
     for (size_t i = 0; i < vecSize; i++) {
         auto it = exec._functPtr.find(data[i].getName());
         if (it == exec._functPtr.end()) {
+            it->second();
             return (false);
         } else {
             exec.setDataCommand(data[i].getName(), data[i].geteOperant(), data[i].getValue());
@@ -33,8 +34,7 @@ bool execution_prog(std::vector<Parser::CommandData> &data)
 int main(int ac, char **argv)
 {
     Parser::ParssCommand pars;
-    try
-    {
+    try {
         // Choice between reading file or user input
         if (ac == 2) {
             std::string str((argv[1]));
@@ -49,9 +49,7 @@ int main(int ac, char **argv)
         }
         execution_prog(pars.getDataCommand());
         return 0;
-    }
-    catch(const std::exception& e)
-    {
+    } catch (const std::exception &e) {
         std::cerr << e.what() << '\n';
     }
 }
