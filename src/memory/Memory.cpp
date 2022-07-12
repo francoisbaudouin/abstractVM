@@ -107,7 +107,7 @@ namespace AbstractVM
         bool pre = false;
         size_t lastZero = 0;
         bool isLastZero = false;
-        for (int i = ope->toString().size()-1; i >= 0; i--) {
+        for (int i = ope->toString().size() - 1; i >= 0; i--) {
             if (ope->toString().at(i) == '\0' || ope->toString().at(i) == '0' || ope->toString().at(i) == '.') {
                 isLastZero = true;
                 lastZero = i;
