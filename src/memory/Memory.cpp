@@ -217,5 +217,4 @@ namespace AbstractVM
     }
 
     int Memory::myExit() { return (0); }
-
 } // namespace AbstractVM
