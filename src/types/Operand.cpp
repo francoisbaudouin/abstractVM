@@ -299,15 +299,16 @@ AbstractVM::IOperand *AbstractVM::Operand::operator*(const AbstractVM::IOperand 
     return newope;
 }
 
+
 AbstractVM::IOperand *AbstractVM::Operand::operator/(const AbstractVM::IOperand &rhs) const
 {
     IOperand *newope;
     AbstractVM::Factory *factory = new AbstractVM::Factory();
 
-    double thisDouble = std::stod(rhs.toString());
-    double rhsDouble = std::stod(this->toString());
+    double ope1 = std::stod(this->toString());
+    double ope2 = std::stod(rhs.toString());
 
-    double newDouble = rhsDouble / thisDouble;
+    double newDouble = ope2 / ope1;
 
     std::string newValue = std::to_string(newDouble);
 
@@ -324,10 +325,10 @@ AbstractVM::IOperand *AbstractVM::Operand::operator%(const AbstractVM::IOperand 
     IOperand *newope;
     AbstractVM::Factory *factory = new AbstractVM::Factory();
 
-    double thisDouble = std::stod(rhs.toString());
-    double rhsDouble = std::stod(this->toString());
+    double ope1 = std::stod(this->toString());
+    double ope2 = std::stod(rhs.toString());
 
-    double newDouble = std::fmod(rhsDouble, thisDouble);
+    double newDouble = std::fmod(ope2, ope1);
 
     std::string newValue = std::to_string(newDouble);
 
