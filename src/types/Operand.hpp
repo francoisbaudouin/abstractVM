@@ -19,8 +19,13 @@ namespace AbstractVM
         Operand(const Operand &other) = default;
         Operand &operator=(const Operand &other) = default;
 
-        virtual std::string toString() const override;                   // string that represents the instance
-        virtual eOperandType getType() const override;                   // returns the type of instance
+        virtual std::string toString() const override; // string that represents the instance
+        virtual eOperandType getType() const override; // returns the type of instance
+
+        std::string infinAdd(std::string frst, std::string scnd) const;
+        std::string infinSub(std::string frst, std::string scnd) const;
+        std::string opeManagementAdd(std::string frst, std::string scnd) const;
+        std::string opeManagementSub(std::string frst, std::string scnd) const;
         virtual IOperand *operator+(const IOperand &rhs) const override; // sum
         virtual IOperand *operator-(const IOperand &rhs) const override; // difference
         virtual IOperand *operator*(const IOperand &rhs) const override; // product

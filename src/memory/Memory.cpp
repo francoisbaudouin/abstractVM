@@ -133,7 +133,7 @@ namespace AbstractVM
         pop();
         IOperand *save2 = _stack.top();
         pop();
-        _stack.push(*save1 + *save2);
+        _stack.push(*save2 + *save1);
     }
 
     void Memory::sub()
@@ -144,7 +144,7 @@ namespace AbstractVM
         pop();
         IOperand *save2 = _stack.top();
         pop();
-        _stack.push(*save1 - *save2);
+        _stack.push(*save2 - *save1);
     }
 
     void Memory::mul()
@@ -155,7 +155,7 @@ namespace AbstractVM
         pop();
         IOperand *save2 = _stack.top();
         pop();
-        _stack.push(*save1 * *save2);
+        _stack.push(*save2 * *save1);
     }
 
     void Memory::div()
@@ -166,7 +166,7 @@ namespace AbstractVM
         pop();
         IOperand *save2 = _stack.top();
         pop();
-        _stack.push(*save1 / *save2);
+        _stack.push(*save2 / *save1);
     }
 
     void Memory::mod()
@@ -177,7 +177,7 @@ namespace AbstractVM
         pop();
         IOperand *save2 = _stack.top();
         pop();
-        _stack.push(*save1 % *save2);
+        _stack.push(*save2 % *save1);
     }
 
     void Memory::load(int value)
