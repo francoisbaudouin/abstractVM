@@ -79,11 +79,32 @@ Test(get_data, OK)
     bool result = true;
 
     pars.readData(filetest);
+    pars.checkProvideData();
 
-    std::vector<Parser::CommandData> data = pars.getDataCommand();
-
-    if (data.empty() == true)
+    if (pars.getDataCommand().empty() == true)
         result = false;
 
     cr_assert_eq(result, true);
+}
+
+Test(Provide_data_not_match_one, KO)
+{
+    Parser::ParssCommand pars;
+    const std::string filetest = "tests/exemple/badexemple_two.avm";
+    bool result = true;
+
+    pars.readData(filetest);
+    result = pars.checkProvideData();
+    cr_assert_eq(result, false);
+}
+
+Test(Provide_data_not_match_two, KO)
+{
+    Parser::ParssCommand pars;
+    const std::string filetest = "tests/exemple/exemple_empty_file.avm";
+    bool result = true;
+
+    pars.readData(filetest);
+    result = pars.checkProvideData();
+    cr_assert_eq(result, false);
 }
