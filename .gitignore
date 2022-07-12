@@ -35,5 +35,10 @@ abstractVM
 # Build folder
 build
 
-# vscode folder
+# Vscode folder
 .vscode
+
+# Test obj file
+*.gcno
+*.gcda
+
