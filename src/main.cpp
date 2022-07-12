@@ -23,7 +23,7 @@ bool execution_prog(std::vector<Parser::CommandData> &data)
         if (it == exec._functPtr.end()) {
             return (false);
         } else {
-            exec.setDataCommand(data[i].geteOperant(), data[i].getValue());
+            exec.setDataCommand(data[i].getName(), data[i].geteOperant(), data[i].getValue());
             it->second();
         }
     }
