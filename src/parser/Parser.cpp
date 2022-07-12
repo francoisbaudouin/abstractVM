@@ -86,10 +86,11 @@ namespace Parser
         if (_exitIsCalled == false)
             return (false);
         std::regex const reg("([a-z]*)(\\s*(([a-z]+\\d*?)*)\\(([-]?\\d+(\\.\\d+)?)\\)*)?(\\s\\;.*)?"); // new regex
+        std::regex const regComment("([;]*)");
         std::smatch match;
 
         for (std::string str : _data) {
-            if (std::regex_match(str, reg) == false) {
+            if (std::regex_match(str, reg) == false && std::regex_match(str, regComment) == false) {
                 return (false);
             }
             if (std::regex_search(str, match, reg) != true)
