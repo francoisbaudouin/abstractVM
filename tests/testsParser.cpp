@@ -65,14 +65,13 @@ Test(given_over_data, Ok)
     cr_assert_eq(result, false);
 }
 
-Test(storage_data_not_empty, KO)
+Test(code_with_comment_at_the_beginning, OK)
 {
     Parser::ParssCommand pars;
-    const std::string filetest = "exemple.avm";
+    const std::string filetest = "exmp_with_code_command.avm";
 
     pars.readData(filetest);
     bool result = pars.readData(filetest);
-    std::cout << result << std::endl;
 
-    cr_assert_eq(result, false);
+    cr_assert_eq(result, true);
 }
