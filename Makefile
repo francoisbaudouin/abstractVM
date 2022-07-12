@@ -70,6 +70,6 @@ clean_test:
 tests_run: fclean
 	$(CXX) -o $(TEST_N) $(SRC_T) $(TEST_SRC) $(TFLAGS)
 	./unit_tests
-	gcovr --exclude tests/s
+	gcovr --exclude tests/
 
 .PHONY : all main clean fclean
