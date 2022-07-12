@@ -172,13 +172,18 @@ int getbigger(std::string frst, std::string scnd)
     std::string frstB = std::get<0>(frstTuple) + std::get<1>(frstTuple);
     std::string scndB = std::get<0>(scndTuple) + std::get<1>(scndTuple);
 
+    if (std::get<0>(frstTuple).size() > std::get<0>(scndTuple).size())
+        return (1);
+    else if (std::get<0>(frstTuple).size() < std::get<0>(scndTuple).size())
+        return (0);
+
     if (frstB.compare(scndB) == 0)
         return (3);
     for (size_t i = 0; i < frstB.size(); i++) {
         if (frstB.at(i) != scndB.at(i)) {
             if (frstB.at(i) > scndB.at(i))
-                return (0);
-            return (1);
+                return (1);
+            return (0);
         }
     }
     return (1);
@@ -222,6 +227,7 @@ std::string AbstractVM::Operand::opeManagementSub(std::string frst, std::string 
 
     if (mSize == 3 && std::tuple<int, int>{1, 1} == strSign)
         return (infinAdd(frst, scnd).insert(0, "-"));
+
 
     if (strSign == std::tuple<int, int>{1, 1} && mSize == 1) {
         return (infinSub(frst, scnd).insert(0, "-"));
