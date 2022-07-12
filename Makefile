@@ -25,8 +25,7 @@ SRC =	src/main.cpp\
 		src/types/Operand.cpp\
 		src/parser/CommandData.cpp\
 
-SRC_T	= src/main.cpp\
-		src/exception/Exception.cpp\
+SRC_T	= src/exception/Exception.cpp\
 		src/factory/Factory.cpp\
 		src/memory/Memory.cpp\
 		src/parser/Parser.cpp\
@@ -48,6 +47,8 @@ CXXFLAGS += -std=c++20 -Wextra -Wall -Wreorder -Wshadow -Isrc/ -g
 
 TFLAGS	=	-lcriterion --coverage -Isrc/
 
+TEST_SRC = tests/*.cpp
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
@@ -67,7 +68,7 @@ clean_test:
 	rm -f *.gcda
 
 tests_run: fclean
-	$(CXX) -o $(TEST_N) $(SRC_T) $(TFLAGS)
+	$(CXX) -o $(TEST_N) $(SRC_T) $(TEST_SRC) $(TFLAGS)
 	./unit_tests
 	gcovr --exclude tests/s
 
