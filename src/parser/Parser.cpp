@@ -72,6 +72,7 @@ namespace Parser
     bool ParssCommand::_setUpCommand(std::smatch &match)
     {
         CommandData command;
+
         command.setter(match.str(1), match.str(3), match.str(5));
 
         _dataCommand.push_back(command);
