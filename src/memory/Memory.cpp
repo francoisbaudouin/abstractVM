@@ -47,17 +47,21 @@ namespace AbstractVM
 
     void Memory::push(IOperand *value)
     {
+        if (value->getType() == BIGDECIMAL) {
+            _stack.push(value);
+            return;
+        }
         if (std::stod(value->toString()) < getmin(value->getType()))
-            throw Test("Underflow");
+            throw Underflow("push", getmin(value->getType()));
         if (std::stod(value->toString()) > getmax(value->getType()))
-            throw Test("Overflow");
+            throw Overflow("Overflow", getmax(value->getType()));
         _stack.push(value);
     }
 
     void Memory::pop()
     {
         if (_stack.size() < 1)
-            exit(84);
+            throw EmptyStack("pop");
         _stack.pop();
     }
 
@@ -70,14 +74,14 @@ namespace AbstractVM
     void Memory::dup()
     {
         if (_stack.size() < 1)
-            exit(84);
+            throw EmptyStack("dump");
         _stack.push(_stack.top());
     }
 
     void Memory::swap()
     {
         if (_stack.size() < 2)
-            exit(84);
+            throw InvalideSize("swap");
         IOperand *save1 = _stack.top();
         pop();
         IOperand *save2 = _stack.top();
@@ -120,16 +124,16 @@ namespace AbstractVM
     void Memory::assert(IOperand *value) const
     {
         if (_stack.size() < 1)
-            exit(84);
+            throw EmptyStack("assert");
         IOperand *saveOpe = _stack.top();
-        if (!(saveOpe->getType() == value->getType()) && (saveOpe->toString() == value->toString()))
-            exit(84);
+        if (!(saveOpe->getType() == value->getType()) && (saveOpe->toString().compare(value->toString()) == 0))
+            throw AssertException("assert");
     }
 
     void Memory::add()
     {
         if (_stack.size() < 2)
-            exit(84);
+            throw InvalideSize("add");
         IOperand *save1 = _stack.top();
         pop();
         IOperand *save2 = _stack.top();
@@ -140,7 +144,7 @@ namespace AbstractVM
     void Memory::sub()
     {
         if (_stack.size() < 2)
-            exit(84);
+            throw InvalideSize("sub");
         IOperand *save1 = _stack.top();
         pop();
         IOperand *save2 = _stack.top();
@@ -151,7 +155,7 @@ namespace AbstractVM
     void Memory::mul()
     {
         if (_stack.size() < 2)
-            exit(84);
+            throw InvalideSize("mul");
         IOperand *save1 = _stack.top();
         pop();
         IOperand *save2 = _stack.top();
@@ -162,7 +166,7 @@ namespace AbstractVM
     void Memory::div()
     {
         if (_stack.size() < 2)
-            exit(84);
+            throw InvalideSize("div");
         IOperand *save1 = _stack.top();
         pop();
         IOperand *save2 = _stack.top();
@@ -173,7 +177,7 @@ namespace AbstractVM
     void Memory::mod()
     {
         if (_stack.size() < 2)
-            exit(84);
+            throw InvalideSize("mod");
         IOperand *save1 = _stack.top();
         pop();
         IOperand *save2 = _stack.top();
@@ -183,15 +187,19 @@ namespace AbstractVM
 
     void Memory::load(int value)
     {
+        if (value > 15 || value < 0)
+            throw InvalidValue("load");
         if (_register.at(value) == NULL)
-            exit(84);
+            throw EmptyRegister("load");
         push(_register.at(value));
     }
 
     void Memory::store(int value)
     {
+        if (value > 15 || value < 0)
+            throw InvalidValue("store");
         if (_stack.size() < 1)
-            exit(84);
+            throw EmptyStack("store");
         IOperand *save1 = _stack.top();
         pop();
         _register.at(value) = save1;
@@ -199,12 +207,13 @@ namespace AbstractVM
 
     void Memory::print()
     {
-        if (_stack.size() < 1 || _stack.top()->getType() != 0)
-            exit(84);
+        if (_stack.size() < 1)
+            throw EmptyStack("print");
+        if (_stack.top()->getType() != 0)
+            throw InvalidType("print");
         int c = std::stoi(_stack.top()->toString());
         std::cout << static_cast<char>(c) << std::endl;
     }
 
     int Memory::myExit() { return (0); }
-
 } // namespace AbstractVM
