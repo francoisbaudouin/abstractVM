@@ -73,6 +73,11 @@ namespace AbstractVM
         InvalidFile(std::string const &msg);
     };
 
+    class InvalidValue : public Exception {
+      public:
+        InvalidValue(std::string const &msg);
+    };
+
 } // namespace AbstractVM
 
 #endif /* !EXCEPTION_HPP_ */
