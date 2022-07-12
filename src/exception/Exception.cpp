@@ -53,3 +53,8 @@ AbstractVM::ParssingFile::ParssingFile(std::string const &msg)
     : Exception("error: " + msg + " : parssing part have problème")
 {
 }
+
+AbstractVM::InvalidValue::InvalidValue(std::string const &msg)
+    : Exception("error: " + msg + " : value should be between 0 and 15")
+{
+}

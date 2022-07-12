@@ -7,6 +7,7 @@
 
 #include "Memory.hpp"
 #include "exception/Exception.hpp"
+#include <iomanip>
 
 namespace AbstractVM
 {
@@ -46,6 +47,10 @@ namespace AbstractVM
 
     void Memory::push(IOperand *value)
     {
+        if (value->getType() == BIGDECIMAL) {
+            _stack.push(value);
+            return;
+        }
         if (std::stod(value->toString()) < getmin(value->getType()))
             throw Underflow("push", getmin(value->getType()));
         if (std::stod(value->toString()) > getmax(value->getType()))
@@ -113,7 +118,8 @@ namespace AbstractVM
     void Memory::dump() const
     {
         for (std::stack<IOperand *> newStack = _stack; !newStack.empty(); newStack.pop())
-            newStack.top()->getType() < 4 ? printInt(newStack.top()) : printPrecision(newStack.top());
+            std::cout << std::setprecision(newStack.top()->getType()) << newStack.top()->toString() << std::endl;
+            // newStack.top()->getType() < 4 ? printInt(newStack.top()) : printPrecision(newStack.top());
     }
 
     void Memory::assert(IOperand *value) const
@@ -121,7 +127,7 @@ namespace AbstractVM
         if (_stack.size() < 1)
             throw EmptyStack("assert");
         IOperand *saveOpe = _stack.top();
-        if (!(saveOpe->getType() == value->getType()) && (saveOpe->toString() == value->toString()))
+        if (!(saveOpe->getType() == value->getType()) && (saveOpe->toString().compare(value->toString()) == 0))
             throw AssertException("assert");
     }
 
@@ -182,6 +188,8 @@ namespace AbstractVM
 
     void Memory::load(int value)
     {
+        if (value > 15 || value < 0)
+            throw InvalidValue("load");
         if (_register.at(value) == NULL)
             throw EmptyRegister("load");
         push(_register.at(value));
@@ -189,6 +197,8 @@ namespace AbstractVM
 
     void Memory::store(int value)
     {
+        if (value > 15 || value < 0)
+            throw InvalidValue("store");
         if (_stack.size() < 1)
             throw EmptyStack("store");
         IOperand *save1 = _stack.top();
