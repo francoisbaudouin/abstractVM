@@ -24,6 +24,7 @@ namespace Parser
         if (type == AbstractVM::eOperandType::UNKNOWN || value.compare("") == 0)
             return (false);
         if (name.compare("load") == 0 || name.compare("store") == 0) {
+            _operandStack = type;
             _value = std::stoi(value);
             return (true);
         }

@@ -185,7 +185,7 @@ namespace AbstractVM
         _stack.push(*save2 % *save1);
     }
 
-    void Memory::load(int value)
+    void Memory::load(int value, eOperandType type)
     {
         if (value > 15 || value < 0)
             throw InvalidValue("load");
@@ -194,7 +194,7 @@ namespace AbstractVM
         push(_register.at(value));
     }
 
-    void Memory::store(int value)
+    void Memory::store(int value, eOperandType type)
     {
         if (value > 15 || value < 0)
             throw InvalidValue("store");

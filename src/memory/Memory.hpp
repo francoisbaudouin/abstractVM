@@ -42,8 +42,8 @@ namespace AbstractVM
         void mul();
         void div();
         void mod();
-        void load(int value);
-        void store(int value);
+        void load(int value, eOperandType type);
+        void store(int value, eOperandType type);
         void print();
         int myExit();
 
