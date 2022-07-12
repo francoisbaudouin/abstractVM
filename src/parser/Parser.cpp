@@ -90,13 +90,6 @@ namespace Parser
         std::smatch match;
 
         for (std::string str : _data) {
-            /* if (std::regex_match(str, reg) == true)
-                _setUpCommand(match);
-            else if (std::regex_match(str, regComment) == true)
-                _setUpCommand(match);
-            else
-                return (false); */
-
             if (std::regex_match(str, reg) == false && std::regex_match(str, regComment) == false) {
                 return (false);
             }
