@@ -30,7 +30,7 @@ std::tuple<std::string, std::string> splitString(std::string str)
 
     if (str.find('.') != std::string::npos) {
         frstB = str.substr(0, separator);
-        frstE = str.substr(separator+1);
+        frstE = str.substr(separator + 1);
     } else {
         frstB = str;
         frstE = "";
@@ -42,7 +42,7 @@ std::string fillstring(std::string str, size_t size, bool begin)
 {
     for (size_t i = str.size(); i != size; i++) {
         if (begin == true)
-            str.insert(0,"0");
+            str.insert(0, "0");
         else
             str.push_back('0');
     }
@@ -58,16 +58,16 @@ std::tuple<std::string, std::string> fillSmallestString(std::string frst, std::s
 
 std::string removeZero(std::string str)
 {
-    for (size_t i = 0; str.at(0) == '0' && i+1 != str.size(); i++)
+    for (size_t i = 0; str.at(0) == '0' && i + 1 != str.size(); i++)
         str.erase(str.begin());
     return (str);
 }
 
-std::tuple<int, std::string>subString(std::string scnd, std::string frst, size_t size, int c)
+std::tuple<int, std::string> subString(std::string scnd, std::string frst, size_t size, int c)
 {
     std::string newstr;
     int sum = 0;
-    for (int i = size-1; i >= 0; i--) {
+    for (int i = size - 1; i >= 0; i--) {
         sum = (scnd.at(i) - '0') - (frst.at(i) - '0');
         if (c != 0) {
             c = 0;
@@ -82,15 +82,15 @@ std::tuple<int, std::string>subString(std::string scnd, std::string frst, size_t
     return {c, newstr};
 }
 
-std::tuple<int, std::string>addString(std::string frst, std::string scnd, size_t size, int c)
+std::tuple<int, std::string> addString(std::string frst, std::string scnd, size_t size, int c)
 {
     std::string newstr;
     int sum = 0;
-    for (int i = size-1; i >= 0; i--) {
+    for (int i = size - 1; i >= 0; i--) {
         sum = frst.at(i) - '0' + scnd.at(i) - '0' + c;
         c = 0;
         if (sum > 9) {
-            c = sum/10;
+            c = sum / 10;
             sum %= 10;
         }
         newstr.insert(0, std::to_string(sum));
@@ -100,14 +100,18 @@ std::tuple<int, std::string>addString(std::string frst, std::string scnd, size_t
 
 std::string AbstractVM::Operand::infinSub(std::string frst, std::string scnd) const
 {
-     int c = 0;
+    int c = 0;
     std::tuple<std::string, std::string> frstTuple = splitString(frst);
     std::tuple<std::string, std::string> scndTuple = splitString(scnd);
-    std::tuple<std::string, std::string> smallesStringB = fillSmallestString(std::get<0>(frstTuple), std::get<0>(scndTuple), true);
-    std::tuple<std::string, std::string> smallesStringE = fillSmallestString(std::get<1>(frstTuple), std::get<1>(scndTuple), false);
-    std::tuple<int, std::string> scndC = subString(std::get<0>(smallesStringE), std::get<1>(smallesStringE), std::get<0>(smallesStringE).size(), c);
+    std::tuple<std::string, std::string> smallesStringB =
+        fillSmallestString(std::get<0>(frstTuple), std::get<0>(scndTuple), true);
+    std::tuple<std::string, std::string> smallesStringE =
+        fillSmallestString(std::get<1>(frstTuple), std::get<1>(scndTuple), false);
+    std::tuple<int, std::string> scndC =
+        subString(std::get<0>(smallesStringE), std::get<1>(smallesStringE), std::get<0>(smallesStringE).size(), c);
     c = std::get<0>(scndC);
-    std::tuple<int, std::string> frstC = subString(std::get<0>(smallesStringB), std::get<1>(smallesStringB), std::get<0>(smallesStringB).size(), c);
+    std::tuple<int, std::string> frstC =
+        subString(std::get<0>(smallesStringB), std::get<1>(smallesStringB), std::get<0>(smallesStringB).size(), c);
     c = std::get<0>(frstC);
 
     frst = std::get<1>(frstC);
@@ -116,7 +120,7 @@ std::string AbstractVM::Operand::infinSub(std::string frst, std::string scnd) co
     frst = removeZero(frst);
 
     if (scnd.size() > 0)
-        frst += "."+scnd;
+        frst += "." + scnd;
 
     return (frst);
 }
@@ -127,12 +131,16 @@ std::string AbstractVM::Operand::infinAdd(std::string frst, std::string scnd) co
     std::tuple<std::string, std::string> frstTuple = splitString(frst);
     std::tuple<std::string, std::string> scndTuple = splitString(scnd);
 
-    std::tuple<std::string, std::string> smallesStringB = fillSmallestString(std::get<0>(frstTuple), std::get<0>(scndTuple), true);
-    std::tuple<std::string, std::string> smallesStringE = fillSmallestString(std::get<1>(frstTuple), std::get<1>(scndTuple), false);
+    std::tuple<std::string, std::string> smallesStringB =
+        fillSmallestString(std::get<0>(frstTuple), std::get<0>(scndTuple), true);
+    std::tuple<std::string, std::string> smallesStringE =
+        fillSmallestString(std::get<1>(frstTuple), std::get<1>(scndTuple), false);
 
-    std::tuple<int, std::string> scndC = addString(std::get<0>(smallesStringE), std::get<1>(smallesStringE), std::get<0>(smallesStringE).size(), c);
+    std::tuple<int, std::string> scndC =
+        addString(std::get<0>(smallesStringE), std::get<1>(smallesStringE), std::get<0>(smallesStringE).size(), c);
     c = std::get<0>(scndC);
-    std::tuple<int, std::string> frstC = addString(std::get<0>(smallesStringB), std::get<1>(smallesStringB), std::get<0>(smallesStringB).size(), c);
+    std::tuple<int, std::string> frstC =
+        addString(std::get<0>(smallesStringB), std::get<1>(smallesStringB), std::get<0>(smallesStringB).size(), c);
     c = std::get<0>(frstC);
 
     frst = std::get<1>(frstC);
@@ -142,7 +150,7 @@ std::string AbstractVM::Operand::infinAdd(std::string frst, std::string scnd) co
         frst.insert(0, std::to_string(c));
     }
     if (scnd.size() > 0)
-        frst += "."+scnd;
+        frst += "." + scnd;
 
     return (frst);
 }
@@ -154,10 +162,7 @@ int isneg(std::string str)
     return (0);
 }
 
-std::tuple<int, int> getsign(std::string frst, std::string scnd)
-{
-    return {isneg(frst), isneg(scnd)};
-}
+std::tuple<int, int> getsign(std::string frst, std::string scnd) { return {isneg(frst), isneg(scnd)}; }
 
 int getbigger(std::string frst, std::string scnd)
 {
@@ -188,21 +193,21 @@ std::string AbstractVM::Operand::opeManagementAdd(std::string frst, std::string 
 
     int mSize = getbigger(frst, scnd);
 
-    if (mSize == 3 && std::tuple<int, int>{1,1} == strSign)
-        return (infinAdd(frst,scnd).insert(0,"-"));
+    if (mSize == 3 && std::tuple<int, int>{1, 1} == strSign)
+        return (infinAdd(frst, scnd).insert(0, "-"));
 
-    if (strSign == std::tuple<int, int>{0,1} && mSize == 0) {
-        return (infinSub(scnd,frst).insert(0,"-"));
-    } else if (strSign == std::tuple<int, int>{1,0} && mSize == 0) {
-        return (infinSub(scnd,frst));
-    } else if (strSign == std::tuple<int, int>{0,1} && mSize == 1) {
-        return (infinSub(frst,scnd));
-    } else if (strSign == std::tuple<int, int>{1,1} && mSize == 0) {
-        return (infinAdd(frst,scnd).insert(0,"-"));
-    } else if (strSign == std::tuple<int, int>{0,0}) {
-        return (infinAdd(frst,scnd));
+    if (strSign == std::tuple<int, int>{0, 1} && mSize == 0) {
+        return (infinSub(scnd, frst).insert(0, "-"));
+    } else if (strSign == std::tuple<int, int>{1, 0} && mSize == 0) {
+        return (infinSub(scnd, frst));
+    } else if (strSign == std::tuple<int, int>{0, 1} && mSize == 1) {
+        return (infinSub(frst, scnd));
+    } else if (strSign == std::tuple<int, int>{1, 1} && mSize == 0) {
+        return (infinAdd(frst, scnd).insert(0, "-"));
+    } else if (strSign == std::tuple<int, int>{0, 0}) {
+        return (infinAdd(frst, scnd));
     } else {
-        return (infinSub(frst,scnd).insert(0,"-"));
+        return (infinSub(frst, scnd).insert(0, "-"));
     }
 }
 
@@ -215,22 +220,21 @@ std::string AbstractVM::Operand::opeManagementSub(std::string frst, std::string 
 
     int mSize = getbigger(frst, scnd);
 
-    if (mSize == 3 && std::tuple<int, int>{1,1} == strSign)
-        return (infinAdd(frst,scnd).insert(0,"-"));
+    if (mSize == 3 && std::tuple<int, int>{1, 1} == strSign)
+        return (infinAdd(frst, scnd).insert(0, "-"));
 
-
-    if (strSign == std::tuple<int, int>{1,1} && mSize == 1) {
-        return (infinSub(frst,scnd).insert(0,"-"));
-    } else if (strSign == std::tuple<int, int>{0,0} && mSize == 1) {
-        return (infinSub(frst,scnd));
-    } else if (strSign == std::tuple<int, int>{0,1}) {
-        return (infinAdd(frst,scnd));
-    } else if (strSign == std::tuple<int, int>{1,0}) {
-        return (infinAdd(frst,scnd).insert(0,"-"));
-    } else if (strSign == std::tuple<int, int>{0,0} && mSize == 0) {
-        return (infinSub(scnd,frst).insert(0,"-"));
+    if (strSign == std::tuple<int, int>{1, 1} && mSize == 1) {
+        return (infinSub(frst, scnd).insert(0, "-"));
+    } else if (strSign == std::tuple<int, int>{0, 0} && mSize == 1) {
+        return (infinSub(frst, scnd));
+    } else if (strSign == std::tuple<int, int>{0, 1}) {
+        return (infinAdd(frst, scnd));
+    } else if (strSign == std::tuple<int, int>{1, 0}) {
+        return (infinAdd(frst, scnd).insert(0, "-"));
+    } else if (strSign == std::tuple<int, int>{0, 0} && mSize == 0) {
+        return (infinSub(scnd, frst).insert(0, "-"));
     } else {
-        return (infinSub(scnd,frst));
+        return (infinSub(scnd, frst));
     }
 }
 
