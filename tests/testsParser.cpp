@@ -12,77 +12,51 @@
 #include "parser/Interpretor.hpp"
 #include "parser/Parser.hpp"
 
-Test(main_base_good_file, goodFileProvide)
+Test(give_good_file, OK)
 {
     Parser::ParssCommand pars;
-    const std::string filetest = "exemple/exemple.avm";
+    const std::string filetest = "tests/exemple/exemple.avm";
 
     int result = pars.readData(filetest);
 
     cr_assert_eq(result, 0);
 }
 
-Test(main_base_bad_file, badFileProvide)
+Test(give_bad_file, KO)
 {
     Parser::ParssCommand pars;
-    const std::string filetest = "exemple/badFile.avm";
+    const std::string filetest = "tests/exemple/badfile.avm";
 
-    bool result = pars.readData(filetest);
+    int result = pars.readData(filetest);
 
     cr_assert_eq(result, 1);
 }
 
-Test(data_given_is_good, dataOk)
+Test(file_with_good_data, OK)
 {
     Parser::ParssCommand pars;
-    const std::string filetest = "exemple/exemple.avm";
+    const std::string filetest = "tests/exemple/exemple.avm";
 
     pars.readData(filetest);
     bool result = pars.checkProvideData();
-
     cr_assert_eq(result, true);
 }
 
-Test(data_given_is_bad, dataKO)
+Test(file_with_bad_data, KO)
 {
     Parser::ParssCommand pars;
-    const std::string filetest = "exemple/badexemple.avm";
+    const std::string filetest = "tests/exemple/badexemple.avm";
 
     pars.readData(filetest);
     bool result = pars.checkProvideData();
-
     cr_assert_eq(result, false);
 }
 
-Test(given_over_data, Ok)
+Test(check_data_with_empty_dataStorage, KO)
 {
     Parser::ParssCommand pars;
-    const std::string filetest = "exemple/exempleoverdata.avm";
+    const std::string filetest = "tests/exemple/badexemple.avm";
 
-    pars.readData(filetest);
     bool result = pars.checkProvideData();
-
     cr_assert_eq(result, false);
-}
-
-Test(code_with_comment_at_the_beginning, OK)
-{
-    Parser::ParssCommand pars;
-    const std::string filetest = "exemple/exmp_with_code_command.avm";
-
-    pars.readData(filetest);
-    bool result = pars.checkProvideData();
-
-    cr_assert_eq(result, true);
-}
-
-Test(code_with_comment_line, OK)
-{
-    Parser::ParssCommand pars;
-    const std::string filetest = "exemple/exmp_comment_inline.avm";
-
-    pars.readData(filetest);
-    bool result = pars.checkProvideData();
-
-    cr_assert_eq(result, true);
 }
