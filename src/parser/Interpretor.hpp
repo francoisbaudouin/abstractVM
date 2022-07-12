@@ -26,6 +26,7 @@ namespace Parser
         AbstractVM::Memory _memory;
 
         int _value;
+
         AbstractVM::eOperandType _operandStack;
 
         AbstractVM::IOperand *_dataCommand;
