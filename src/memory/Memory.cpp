@@ -7,6 +7,7 @@
 
 #include "Memory.hpp"
 #include "exception/Exception.hpp"
+#include <iomanip>
 
 namespace AbstractVM
 {
@@ -112,9 +113,8 @@ namespace AbstractVM
 
     void Memory::dump() const
     {
-        for (std::stack<IOperand *> newStack = _stack; !newStack.empty(); newStack.pop()) {
-            newStack.top()->getType() < 4 ? printInt(newStack.top()) : printPrecision(newStack.top());
-        }
+        for (std::stack<IOperand *> newStack = _stack; !newStack.empty(); newStack.pop())
+            std::cout << std::setprecision(newStack.top()->getType()) << newStack.top()->toString() << std::endl;
     }
 
     void Memory::assert(IOperand *value) const
