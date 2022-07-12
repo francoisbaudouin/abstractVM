@@ -8,6 +8,7 @@
 #include "Memory.hpp"
 #include <iomanip>
 #include "exception/Exception.hpp"
+#include "factory/Factory.hpp"
 
 namespace AbstractVM
 {
@@ -191,7 +192,9 @@ namespace AbstractVM
             throw InvalidValue("load");
         if (_register.at(value) == NULL)
             throw EmptyRegister("load");
-        push(_register.at(value));
+        IOperand *save1 = Factory::operands.at(type)(_register.at(value)->toString());
+
+        push(save1);
     }
 
     void Memory::store(int value, eOperandType type)
@@ -200,7 +203,7 @@ namespace AbstractVM
             throw InvalidValue("store");
         if (_stack.size() < 1)
             throw EmptyStack("store");
-        IOperand *save1 = _stack.top();
+        IOperand *save1 = Factory::operands.at(type)(_stack.top()->toString());
         pop();
         _register.at(value) = save1;
     }

@@ -37,7 +37,7 @@ namespace Parser
             {"assert", [this]() { _memory.assert(_dataCommand); }}, {"add", [this]() { _memory.add(); }},
             {"sub", [this]() { _memory.sub(); }}, {"mul", [this]() { _memory.mul(); }},
             {"div", [this]() { _memory.div(); }}, {"mod", [this]() { _memory.mod(); }},
-            {"load", [this]() { _memory.load(_value); }}, {"store", [this]() { _memory.store(_value); }},
+            {"load", [this]() { _memory.load(_value, _operandStack); }}, {"store", [this]() { _memory.store(_value, _operandStack); }},
             {"print", [this]() { _memory.print(); }}, {"exit", [this]() { _memory.myExit(); }}};
     };
 } // namespace Parser
