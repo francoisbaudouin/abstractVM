@@ -228,7 +228,6 @@ std::string AbstractVM::Operand::opeManagementSub(std::string frst, std::string 
     if (mSize == 3 && std::tuple<int, int>{1, 1} == strSign)
         return (infinAdd(frst, scnd).insert(0, "-"));
 
-
     if (strSign == std::tuple<int, int>{1, 1} && mSize == 1) {
         return (infinSub(frst, scnd).insert(0, "-"));
     } else if (strSign == std::tuple<int, int>{0, 0} && mSize == 1) {
@@ -298,7 +297,6 @@ AbstractVM::IOperand *AbstractVM::Operand::operator*(const AbstractVM::IOperand 
 
     return newope;
 }
-
 
 AbstractVM::IOperand *AbstractVM::Operand::operator/(const AbstractVM::IOperand &rhs) const
 {
