@@ -84,7 +84,7 @@ namespace Parser
     {
         if (_exitIsCalled == false)
             return (false);
-        std::regex const reg("([a-z-;]*)(\\s*(([a-z]+\\d*?)*)\\((\\d+(\\.\\d+)?)\\))?"); // new regex
+        std::regex const reg("([a-z]*)(\\s*(([a-z]+\\d*?)*)\\(([-]?\\d+(\\.\\d+)?)\\))?"); // new regex
         std::smatch match;
 
         for (std::string str : _data) {
