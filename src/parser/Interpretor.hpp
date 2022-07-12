@@ -21,7 +21,7 @@ namespace Parser
 
         ~Interpretor();
 
-        bool setDataCommand(AbstractVM::eOperandType type, std::string data);
+        bool setDataCommand(std::string name, AbstractVM::eOperandType type, std::string data);
 
         AbstractVM::Memory _memory;
 
