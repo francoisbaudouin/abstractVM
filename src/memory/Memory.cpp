@@ -119,7 +119,6 @@ namespace AbstractVM
     {
         for (std::stack<IOperand *> newStack = _stack; !newStack.empty(); newStack.pop())
             std::cout << std::setprecision(newStack.top()->getType()) << newStack.top()->toString() << std::endl;
-            // newStack.top()->getType() < 4 ? printInt(newStack.top()) : printPrecision(newStack.top());
     }
 
     void Memory::assert(IOperand *value) const
