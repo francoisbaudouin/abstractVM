@@ -37,7 +37,7 @@ namespace Parser
                     _exitIsCalled = true;
                     _allowToWriteData = false;
                 }
-                if (_allowToWriteData == true)
+                if (_allowToWriteData == true && line.c_str()[0] != ';')
                     _data.push_back(line);
             }
             file.close();
@@ -63,8 +63,9 @@ namespace Parser
                 _exitIsCalled = true;
                 _allowToWriteData = false;
             }
-            if (_allowToWriteData == true && line.c_str()[0] != ';')
+            if (_allowToWriteData == true && line.c_str()[0] != ';') {
                 _data.push_back(line);
+            }
         }
         return (0);
     }
@@ -84,7 +85,7 @@ namespace Parser
     {
         if (_exitIsCalled == false)
             return (false);
-        std::regex const reg("([a-z]*)(\\s*(([a-z]+\\d*?)*)\\(([-]?\\d+(\\.\\d+)?)\\))?(\\;+)?"); // new regex
+        std::regex const reg("([a-z-;]*)(\\s*(([a-z]+\\d*?)*)\\(([-]?\\d+(\\.\\d+)?)\\))?(\\;+)?"); // new regex
         std::smatch match;
 
         for (std::string str : _data) {
