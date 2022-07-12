@@ -25,7 +25,7 @@ SRC =	src/main.cpp\
 		src/types/Operand.cpp\
 		src/parser/CommandData.cpp\
 
-SRC_T	=
+SRC_T	= 
 
 OBJ	=	$(SRC:.cpp=.o)
 
@@ -56,6 +56,6 @@ clean_test:
 tests_run: fclean
 	$(CC) -o $(TEST_N) $(SRC_T) $(TFLAGS)
 	./unit_tests
-	gcovr --exclude tests/
+	gcovr --exclude tests/s
 
 .PHONY : all main clean fclean

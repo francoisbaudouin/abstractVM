@@ -63,7 +63,7 @@ namespace Parser
                 _exitIsCalled = true;
                 _allowToWriteData = false;
             }
-            if (_allowToWriteData == true)
+            if (_allowToWriteData == true && line.c_str()[0] != ';')
                 _data.push_back(line);
         }
         return (0);
