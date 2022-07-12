@@ -104,12 +104,26 @@ namespace AbstractVM
     void printPrecision(IOperand *ope)
     {
         int maxPrecs = 0;
+        bool pre = false;
+        int lastZero = 0;
+        bool isLastZero = false;
+        for (int i = ope->toString().size()-1; i >= 0; i--) {
+            if (ope->toString().at(i) == '\0' || ope->toString().at(i) == '0' || ope->toString().at(i) == '.') {
+                isLastZero = true;
+                lastZero = i;
+            } else
+                break;
+        }
         for (size_t i = 0; i < ope->toString().size(); i++) {
-            if (ope->toString().at(i) == '.') {
-                std::cout << ope->toString().at(i);
-                i++;
+            if (isLastZero) {
+                if (i == lastZero)
+                    break;
             }
-            if (maxPrecs < ope->getPrecision())
+            if (pre == true)
+                maxPrecs++;
+            if (ope->toString().at(i) == '.')
+                pre = true;
+            if (ope->getPrecision() < maxPrecs)
                 break;
             std::cout << ope->toString().at(i);
         }
@@ -118,8 +132,9 @@ namespace AbstractVM
 
     void Memory::dump() const
     {
-        for (std::stack<IOperand *> newStack = _stack; !newStack.empty(); newStack.pop())
-            std::cout << std::setprecision(newStack.top()->getType()) << newStack.top()->toString() << std::endl;
+        for (std::stack<IOperand *> newStack = _stack; !newStack.empty(); newStack.pop()) {
+            newStack.top()->getType() < 3 ? printInt(newStack.top()) : printPrecision(newStack.top());
+        }
     }
 
     void Memory::assert(IOperand *value) const
