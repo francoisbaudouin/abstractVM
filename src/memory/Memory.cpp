@@ -6,8 +6,8 @@
 */
 
 #include "Memory.hpp"
-#include "exception/Exception.hpp"
 #include <iomanip>
+#include "exception/Exception.hpp"
 
 namespace AbstractVM
 {
