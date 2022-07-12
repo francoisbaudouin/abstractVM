@@ -53,3 +53,14 @@ Test(data_given_is_bad, dataKO)
 
     cr_assert_eq(result, false);
 }
+
+Test(given_over_data, Ok)
+{
+    Parser::ParssCommand pars;
+    const std::string filetest = "exempleoverdata.avm";
+
+    pars.readData(filetest);
+    bool result = pars.checkProvideData();
+
+    cr_assert_eq(result, false);
+}
