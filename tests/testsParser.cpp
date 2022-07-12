@@ -60,3 +60,30 @@ Test(check_data_with_empty_dataStorage, KO)
     bool result = pars.checkProvideData();
     cr_assert_eq(result, false);
 }
+
+Test(read_file_with_dataStorage_not_empty, KO)
+{
+    Parser::ParssCommand pars;
+    const std::string filetest = "tests/exemple/badexemple.avm";
+
+    pars.readData(filetest);
+    int result = pars.readData(filetest);
+
+    cr_assert_eq(result, 1);
+}
+
+Test(get_data, OK)
+{
+    Parser::ParssCommand pars;
+    const std::string filetest = "tests/exemple/exemple.avm";
+    bool result = true;
+
+    pars.readData(filetest);
+
+    std::vector<Parser::CommandData> data = pars.getDataCommand();
+
+    if (data.empty() == true)
+        result = false;
+
+    cr_assert_eq(result, true);
+}
