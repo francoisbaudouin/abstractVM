@@ -45,12 +45,12 @@ AbstractVM::Overflow::Overflow(std::string const &msg, double minValue)
 }
 
 AbstractVM::InvalidFile::InvalidFile(std::string const &msg)
-    : Exception("error: " + msg + " : File doesn't exist or any other occurred")
+    : Exception("error: " + msg + " : File doesn't exist or any other error occurred")
 {
 }
 
 AbstractVM::ParssingFile::ParssingFile(std::string const &msg)
-    : Exception("error: " + msg + " : parssing part have problème")
+    : Exception("error: " + msg + " : parssing part have problem")
 {
 }
 
@@ -64,7 +64,11 @@ AbstractVM::DivisionByZero::DivisionByZero(std::string const &msg)
 {
 }
 
-AbstractVM::CommandUnknown::CommandUnknown(std::string const &msg)
-    : Exception("error: " + msg + " : is unknown command")
+AbstractVM::CommandUnknown::CommandUnknown(std::string const &msg) : Exception("error: " + msg + " : unknown command")
+{
+}
+
+AbstractVM::ParserDataNotEmpty::ParserDataNotEmpty(std::string const &msg)
+    : Exception("error: " + msg + " : data is already set")
 {
 }
