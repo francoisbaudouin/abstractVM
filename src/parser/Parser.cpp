@@ -25,6 +25,9 @@ namespace Parser
     int ParssCommand::readData(const std::string path)
     {
         std::string line;
+        size_t position = 0;
+        std::string token;
+        std::string delimiters = ";";
 
         if (_data.empty() == false) {
             return (1);
@@ -37,8 +40,11 @@ namespace Parser
                     _exitIsCalled = true;
                     _allowToWriteData = false;
                 }
-                if (_allowToWriteData == true && line.c_str()[0] != ';')
-                    _data.push_back(line);
+                if (_allowToWriteData == true && line.c_str()[0] != ';') {
+                    position = line.find(delimiters);
+                    token = line.substr(0, position);
+                    _data.push_back(token);
+                }
             }
             file.close();
         } else {
@@ -92,7 +98,7 @@ namespace Parser
     {
         if (_exitIsCalled == false)
             return (false);
-        std::regex const reg("\\s*([a-z]*)(((\\s*[a-z]+\\d*?)*)\\s*(\\()([-]?\\d+(\\.\\d+)?)(\\))\\)*)?"); // new regex
+        std::regex const reg("\\s*([a-z]*)(((\\s*[a-z]+\\d*?)*)\\s*(\\()([-]?\\d+(\\.\\d+)?)(\\)\\s*)\\)*)?"); // new regex
         std::regex const regComment("\\s*([;].*)");
         std::smatch match;
 
