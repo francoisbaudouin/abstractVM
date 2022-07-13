@@ -26,7 +26,7 @@ namespace Parser
     {
         std::string line;
 
-        if (!_data.empty()) {
+        if (_data.empty() == false) {
             return (1);
         }
         std::ifstream file(path);
@@ -57,6 +57,7 @@ namespace Parser
         }
         while (1) {
             std::getline(std::cin, line);
+
             if (line.compare(";;") == 0 || std::cin.eof())
                 break;
             if (line.compare("exit") == 0) {
@@ -81,13 +82,14 @@ namespace Parser
     }
 
     std::vector<CommandData> &ParssCommand::getDataCommand() { return (_dataCommand); }
+
     bool ParssCommand::checkProvideData()
     {
         if (_exitIsCalled == false)
             return (false);
         std::regex const reg(
-            "(\\s*[a-z]*)(\\s*((\\s*[a-z]+\\d*?)*)\\s*\\(([-]?\\d+(\\.\\d+)?)\\)*)?(\\s*\\;.*)?"); // new regex
-        std::regex const regComment("([;].*)");
+            "\\s*([a-z]*)(((\\s*[a-z]+\\d*?)*)\\s*\\(([-]?\\d+(\\.\\d+)?)\\)*)?"); // new regex
+        std::regex const regComment("\\s*([;].*)");
         std::smatch match;
 
         for (std::string str : _data) {

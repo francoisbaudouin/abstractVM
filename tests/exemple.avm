@@ -1,5 +1,4 @@
-push      float(1.2)
-          push         float(2.1)
-                        push int8(2)
-add
+push                                         int32(7)
+        push        ;                                                                     int32(9)           ;               dfsfsqfsfqqsfsdqf
+dump
 exit
