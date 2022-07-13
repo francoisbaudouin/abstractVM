@@ -59,6 +59,11 @@ AbstractVM::InvalidValue::InvalidValue(std::string const &msg)
 {
 }
 
+AbstractVM::DivisionByZero::DivisionByZero(std::string const &msg)
+    : Exception("error: " + msg + " : cannot divide by 0")
+{
+}
+
 AbstractVM::CommandUnknown::CommandUnknown(std::string const &msg)
     : Exception("error: " + msg + " : is unknown command")
 {

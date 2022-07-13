@@ -117,7 +117,7 @@ std::string AbstractVM::Operand::infinSub(std::string frst, std::string scnd) co
     frst = std::get<1>(frstC);
     scnd = std::get<1>(scndC);
 
-    frst = removeZero(frst);
+    scnd = removeZero(scnd);
 
     if (scnd.size() > 0)
         frst += "." + scnd;
@@ -306,7 +306,7 @@ AbstractVM::IOperand *AbstractVM::Operand::operator/(const AbstractVM::IOperand 
     double ope1 = std::stod(this->toString());
     double ope2 = std::stod(rhs.toString());
 
-    double newDouble = ope2 / ope1;
+    double newDouble = ope1 / ope2;
 
     std::string newValue = std::to_string(newDouble);
 
@@ -326,7 +326,7 @@ AbstractVM::IOperand *AbstractVM::Operand::operator%(const AbstractVM::IOperand 
     double ope1 = std::stod(this->toString());
     double ope2 = std::stod(rhs.toString());
 
-    double newDouble = std::fmod(ope2, ope1);
+    double newDouble = std::fmod(ope1, ope2);
 
     std::string newValue = std::to_string(newDouble);
 

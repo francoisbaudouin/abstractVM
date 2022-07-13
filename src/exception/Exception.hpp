@@ -78,6 +78,11 @@ namespace AbstractVM
         InvalidValue(std::string const &msg);
     };
 
+    class DivisionByZero : public Exception {
+      public:
+        DivisionByZero(std::string const &msg);
+    };
+
     class CommandUnknown : public Exception {
       public:
         CommandUnknown(std::string const &msg);
