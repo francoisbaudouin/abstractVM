@@ -187,6 +187,8 @@ namespace AbstractVM
         pop();
         IOperand *save2 = _stack.top();
         pop();
+        if (std::stod(save1->toString()) == 0)
+            throw DivisionByZero("div");
         _stack.push(*save2 / *save1);
     }
 
@@ -198,6 +200,8 @@ namespace AbstractVM
         pop();
         IOperand *save2 = _stack.top();
         pop();
+        if (std::stod(save1->toString()) == 0)
+            throw DivisionByZero("mod");
         _stack.push(*save2 % *save1);
     }
 

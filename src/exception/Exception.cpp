@@ -58,3 +58,8 @@ AbstractVM::InvalidValue::InvalidValue(std::string const &msg)
     : Exception("error: " + msg + " : value should be between 0 and 15")
 {
 }
+
+AbstractVM::DivisionByZero::DivisionByZero(std::string const &msg)
+    : Exception("error: " + msg + " : cannot divide by 0")
+{
+}

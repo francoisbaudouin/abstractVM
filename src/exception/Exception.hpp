@@ -78,6 +78,11 @@ namespace AbstractVM
         InvalidValue(std::string const &msg);
     };
 
+    class DivisionByZero : public Exception {
+      public:
+        DivisionByZero(std::string const &msg);
+    };
+
 } // namespace AbstractVM
 
 #endif /* !EXCEPTION_HPP_ */
