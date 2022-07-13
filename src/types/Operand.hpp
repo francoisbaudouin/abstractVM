@@ -22,8 +22,12 @@ namespace AbstractVM
         virtual std::string toString() const override; // string that represents the instance
         virtual eOperandType getType() const override; // returns the type of instance
 
+
+      std::string mulString(std::string frst, std::string scnd) const;
+
         std::string infinAdd(std::string frst, std::string scnd) const;
         std::string infinSub(std::string frst, std::string scnd) const;
+        std::string infinMul(std::string frst, std::string scnd) const;
         std::string opeManagementAdd(std::string frst, std::string scnd) const;
         std::string opeManagementSub(std::string frst, std::string scnd) const;
         virtual IOperand *operator+(const IOperand &rhs) const override; // sum
