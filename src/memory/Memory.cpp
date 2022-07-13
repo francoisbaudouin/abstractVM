@@ -52,10 +52,12 @@ namespace AbstractVM
             _stack.push(value);
             return;
         }
-        if (std::stod(value->toString()) < getmin(value->getType()))
-            throw Underflow("push", getmin(value->getType()));
         if (std::stod(value->toString()) > getmax(value->getType()))
-            throw Overflow("Overflow", getmax(value->getType()));
+            throw Overflow("push", getmax(value->getType()));
+        if (!(value->getType() == FLOAT || value->getType() == DOUBLE)) {
+            if (std::stod(value->toString()) < getmin(value->getType()))
+                throw Underflow("push", getmin(value->getType()));
+        }
         _stack.push(value);
     }
 
@@ -187,6 +189,8 @@ namespace AbstractVM
         pop();
         IOperand *save2 = _stack.top();
         pop();
+        if (std::stod(save1->toString()) == 0)
+            throw DivisionByZero("div");
         _stack.push(*save2 / *save1);
     }
 
@@ -198,6 +202,8 @@ namespace AbstractVM
         pop();
         IOperand *save2 = _stack.top();
         pop();
+        if (std::stod(save1->toString()) == 0)
+            throw DivisionByZero("mod");
         _stack.push(*save2 % *save1);
     }
 
