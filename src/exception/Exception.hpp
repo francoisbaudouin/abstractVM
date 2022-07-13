@@ -83,6 +83,10 @@ namespace AbstractVM
         DivisionByZero(std::string const &msg);
     };
 
+    class CommandUnknown : public Exception {
+      public:
+        CommandUnknown(std::string const &msg);
+    };
 } // namespace AbstractVM
 
 #endif /* !EXCEPTION_HPP_ */
