@@ -80,7 +80,7 @@ namespace Parser
     {
         CommandData command;
 
-        command.setter(match.str(1), match.str(3), match.str(5));
+        command.setter(match.str(1), match.str(3), match.str(6));
 
         _dataCommand.push_back(command);
         return (true);
@@ -92,7 +92,7 @@ namespace Parser
     {
         if (_exitIsCalled == false)
             return (false);
-        std::regex const reg("\\s*([a-z]*)(((\\s*[a-z]+\\d*?)*)\\s*\\(([-]?\\d+(\\.\\d+)?)\\)*)?"); // new regex
+        std::regex const reg("\\s*([a-z]*)(((\\s*[a-z]+\\d*?)*)\\s*(\\()([-]?\\d+(\\.\\d+)?)(\\))\\)*)?"); // new regex
         std::regex const regComment("\\s*([;].*)");
         std::smatch match;
 
