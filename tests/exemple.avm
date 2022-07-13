@@ -1,4 +1,4 @@
-push                                         int32(7)
-        push        ;                                                                     int32(9)           ;               dfsfsqfsfqqsfsdqf
+push int32                              (78) ;
+push int32                                                                                      (45)
 dump
 exit
