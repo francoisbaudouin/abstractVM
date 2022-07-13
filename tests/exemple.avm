@@ -1,12 +1,5 @@
-; yennefer is better than triss
-push int32(33) ; jéjé
-push int32(42)
+push      float(1.2)
+          push         float(2.1)
+                        push int8(2)
 add
-push float(44.55)
-mul
-push double(42.42)
-push int32(42)
-dump
-pop
-assert double(42.42)
 exit

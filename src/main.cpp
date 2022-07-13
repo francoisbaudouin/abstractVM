@@ -6,6 +6,7 @@
 */
 
 #include <iostream>
+#include "exception/Exception.hpp"
 #include "factory/Factory.hpp"
 #include "parser/CommandData.hpp"
 #include "parser/Interpretor.hpp"
@@ -22,6 +23,7 @@ bool execution_prog(std::vector<Parser::CommandData> &data)
         auto it = exec._functPtr.find(data[i].getName());
 
         if (it == exec._functPtr.end()) {
+            throw AbstractVM::CommandUnknown("Line " + std::to_string(i + 1));
             return (false);
         } else {
             exec.setDataCommand(data[i].getName(), data[i].geteOperant(), data[i].getValue());

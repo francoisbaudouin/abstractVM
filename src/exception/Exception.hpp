@@ -63,16 +63,6 @@ namespace AbstractVM
         Overflow(std::string const &msg, double minValue);
     };
 
-    class ParssingFile : public Exception {
-      public:
-        ParssingFile(std::string const &msg);
-    };
-
-    class InvalidFile : public Exception {
-      public:
-        InvalidFile(std::string const &msg);
-    };
-
     class InvalidValue : public Exception {
       public:
         InvalidValue(std::string const &msg);
@@ -83,10 +73,36 @@ namespace AbstractVM
         DivisionByZero(std::string const &msg);
     };
 
+    // -------------------------------------------
+    //
+    //
+    // Parser part
+    //
+    //
+    //--------------------------------------------
+
     class CommandUnknown : public Exception {
       public:
         CommandUnknown(std::string const &msg);
     };
+
+    class ParssingFile : public Exception {
+      public:
+        ParssingFile(std::string const &msg);
+    };
+
+    class InvalidFile : public Exception {
+      public:
+        InvalidFile(std::string const &msg);
+    };
+
+    class ParserDataNotEmpty : public Exception {
+      public:
+        ParserDataNotEmpty(std::string const &msg);
+    };
+
+    
+
 } // namespace AbstractVM
 
 #endif /* !EXCEPTION_HPP_ */
