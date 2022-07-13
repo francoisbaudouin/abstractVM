@@ -21,7 +21,6 @@ bool execution_prog(std::vector<Parser::CommandData> &data)
     for (size_t i = 0; i < vecSize; i++) {
         auto it = exec._functPtr.find(data[i].getName());
         if (it == exec._functPtr.end()) {
-            it->second();
             return (false);
         } else {
             exec.setDataCommand(data[i].getName(), data[i].geteOperant(), data[i].getValue());
