@@ -32,11 +32,12 @@ Test(IteratorFunct, OK)
             break;
         } else {
             exec.setDataCommand(data[i].getName(), data[i].geteOperant(), data[i].getValue());
+            it->second();
             result = true;
             break;
         }
     }
-    cr_assert_eq(pars.checkProvideData(), true);
+    cr_assert_eq(result, true);
 }
 
 Test(set_command, OK)
@@ -52,7 +53,7 @@ Test(set_command, OK)
     std::vector<Parser::CommandData> &data = pars.getDataCommand();
 
     result = exec.setDataCommand(data[0].getName(), data[0].geteOperant(), data[0].getValue());
-    cr_assert_eq(pars.checkProvideData(), true);
+    cr_assert_eq(result, true);
 }
 
 Test(set_command_bad, KO)
@@ -69,5 +70,22 @@ Test(set_command_bad, KO)
 
     result = exec.setDataCommand(data[2].getName(), data[2].geteOperant(), data[2].getValue());
     std::cout << data[2].getName() << std::endl;
-    cr_assert_eq(pars.checkProvideData(), false);
+    cr_assert_eq(result, false);
+}
+
+Test(set_command_with_load, KO)
+{
+    Parser::ParssCommand pars;
+    const std::string filetest = "tests/exemple/exemple_with_load.avm";
+    bool result;
+    pars.readData(filetest);
+    pars.checkProvideData();
+
+    Parser::Interpretor exec;
+
+    std::vector<Parser::CommandData> &data = pars.getDataCommand();
+
+    result = exec.setDataCommand(data[10].getName(), data[10].geteOperant(), data[10].getValue());
+
+    cr_assert_eq(result, true);
 }
