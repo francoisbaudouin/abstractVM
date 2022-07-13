@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <cmath>
 #include <iostream>
+#include <vector>
 #include "factory/Factory.hpp"
 
 AbstractVM::Operand::Operand(eOperandType type, const std::string &value, int precision)
@@ -98,17 +99,23 @@ std::tuple<int, std::string> addString(std::string frst, std::string scnd, size_
     return {c, newstr};
 }
 
+std::tuple<std::tuple<std::string, std::string>, std::tuple<std::string, std::string>> test(std::string frst, std::string scnd)
+{
+    std::tuple<std::string, std::string> frstTuple = splitString(frst);
+    std::tuple<std::string, std::string> scndTuple = splitString(scnd);
+    std::tuple<std::string, std::string> smallesStringB = fillSmallestString(std::get<0>(frstTuple), std::get<0>(scndTuple), true);
+    std::tuple<std::string, std::string> smallesStringE = fillSmallestString(std::get<1>(frstTuple), std::get<1>(scndTuple), false);
+    return {smallesStringB,smallesStringE};
+}
+
 std::string AbstractVM::Operand::infinSub(std::string frst, std::string scnd) const
 {
     int c = 0;
-    std::tuple<std::string, std::string> frstTuple = splitString(frst);
-    std::tuple<std::string, std::string> scndTuple = splitString(scnd);
-    std::tuple<std::string, std::string> smallesStringB =
-        fillSmallestString(std::get<0>(frstTuple), std::get<0>(scndTuple), true);
-    std::tuple<std::string, std::string> smallesStringE =
-        fillSmallestString(std::get<1>(frstTuple), std::get<1>(scndTuple), false);
-    std::tuple<int, std::string> scndC =
-        subString(std::get<0>(smallesStringE), std::get<1>(smallesStringE), std::get<0>(smallesStringE).size(), c);
+    std::tuple<std::tuple<std::string, std::string>, std::tuple<std::string, std::string>> fillStr = test(frst, scnd);
+    std::tuple<std::string, std::string> smallesStringB = std::get<0>(fillStr);
+    std::tuple<std::string, std::string> smallesStringE = std::get<1>(fillStr);
+
+    std::tuple<int, std::string> scndC = subString(std::get<0>(smallesStringE), std::get<1>(smallesStringE), std::get<0>(smallesStringE).size(), c);
     c = std::get<0>(scndC);
     std::tuple<int, std::string> frstC =
         subString(std::get<0>(smallesStringB), std::get<1>(smallesStringB), std::get<0>(smallesStringB).size(), c);
@@ -117,7 +124,8 @@ std::string AbstractVM::Operand::infinSub(std::string frst, std::string scnd) co
     frst = std::get<1>(frstC);
     scnd = std::get<1>(scndC);
 
-    frst = removeZero(frst);
+    if (frst.size() > 0)
+        frst = removeZero(frst);
 
     if (scnd.size() > 0)
         frst += "." + scnd;
@@ -128,13 +136,9 @@ std::string AbstractVM::Operand::infinSub(std::string frst, std::string scnd) co
 std::string AbstractVM::Operand::infinAdd(std::string frst, std::string scnd) const
 {
     int c = 0;
-    std::tuple<std::string, std::string> frstTuple = splitString(frst);
-    std::tuple<std::string, std::string> scndTuple = splitString(scnd);
-
-    std::tuple<std::string, std::string> smallesStringB =
-        fillSmallestString(std::get<0>(frstTuple), std::get<0>(scndTuple), true);
-    std::tuple<std::string, std::string> smallesStringE =
-        fillSmallestString(std::get<1>(frstTuple), std::get<1>(scndTuple), false);
+    std::tuple<std::tuple<std::string, std::string>, std::tuple<std::string, std::string>> fillStr = test(frst, scnd);
+    std::tuple<std::string, std::string> smallesStringB = std::get<0>(fillStr);
+    std::tuple<std::string, std::string> smallesStringE = std::get<1>(fillStr);
 
     std::tuple<int, std::string> scndC =
         addString(std::get<0>(smallesStringE), std::get<1>(smallesStringE), std::get<0>(smallesStringE).size(), c);
@@ -153,6 +157,41 @@ std::string AbstractVM::Operand::infinAdd(std::string frst, std::string scnd) co
         frst += "." + scnd;
 
     return (frst);
+}
+
+std::string insertZero(int nbr)
+{
+    std::string buf;
+    for (int i = 0; i < nbr; i++) {
+        buf.push_back('0');
+    }
+    return (buf);
+}
+
+std::string AbstractVM::Operand::mulString(std::string frst, std::string scnd) const
+{
+    std::string res;
+    int c = 0;
+    int sum = 0;
+
+    for (int i = frst.size()-1; i >= 0; i--) {
+        std::string toAdd = insertZero(frst.size() - i-1);
+        sum = 0;
+        c = 0;
+        for (int j = scnd.size()-1; j >= 0; j--) {
+            sum = (frst.at(i) - '0')*(scnd.at(j) - '0') + c;
+            c = 0;
+            if (sum > 9) {
+                c = sum/10;
+                sum %= 10;
+            }
+            toAdd.insert(0,std::to_string(sum));
+        }
+        if (c != 0)
+            toAdd.insert(0,std::to_string(c));
+        res = infinAdd(res, toAdd);
+    }
+    return (res);
 }
 
 int isneg(std::string str)
@@ -187,6 +226,26 @@ int getbigger(std::string frst, std::string scnd)
         }
     }
     return (1);
+}
+
+std::string AbstractVM::Operand::infinMul(std::string frst, std::string scnd) const
+{
+    int neg = isneg(frst) + isneg(scnd);
+
+    frst.erase(remove(frst.begin(), frst.end(), '-'), frst.end());
+    scnd.erase(remove(scnd.begin(), scnd.end(), '-'), scnd.end());
+    std::tuple<std::tuple<std::string, std::string>, std::tuple<std::string, std::string>> fillStr = test(frst, scnd);
+    std::tuple<std::string, std::string> smallesStringB = std::get<0>(fillStr);
+    std::tuple<std::string, std::string> smallesStringE = std::get<1>(fillStr);
+    frst = std::get<0>(smallesStringB) + std::get<0>(smallesStringE);
+    scnd = std::get<1>(smallesStringB) + std::get<1>(smallesStringE);
+    int carry = std::get<1>(smallesStringE).size() * 2;
+    std::string res = mulString(frst, scnd);
+    if (carry != 0)
+        res.insert(res.size()-carry,".");
+    if (neg%2!=0)
+        res.insert(0,"-");
+    return (res);
 }
 
 std::string AbstractVM::Operand::opeManagementAdd(std::string frst, std::string scnd) const
@@ -283,12 +342,7 @@ AbstractVM::IOperand *AbstractVM::Operand::operator*(const AbstractVM::IOperand 
     IOperand *newope;
     AbstractVM::Factory *factory = new AbstractVM::Factory();
 
-    double rhsDouble = std::stod(rhs.toString());
-    double thisDouble = std::stod(this->toString());
-
-    double newDouble = rhsDouble * thisDouble;
-
-    std::string newValue = std::to_string(newDouble);
+    std::string newValue = infinMul(rhs.toString(), this->toString());
 
     if (this->getPrecision() < rhs.getPrecision())
         newope = factory->createOperand(rhs.getType(), newValue);
