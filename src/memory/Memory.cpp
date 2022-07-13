@@ -52,10 +52,12 @@ namespace AbstractVM
             _stack.push(value);
             return;
         }
-        if (std::stod(value->toString()) < getmin(value->getType()))
-            throw Underflow("push", getmin(value->getType()));
         if (std::stod(value->toString()) > getmax(value->getType()))
-            throw Overflow("Overflow", getmax(value->getType()));
+            throw Overflow("push", getmax(value->getType()));
+        if (!(value->getType() == FLOAT || value->getType() == DOUBLE)) {
+            if (std::stod(value->toString()) < getmin(value->getType()))
+                throw Underflow("push", getmin(value->getType()));
+        }
         _stack.push(value);
     }
 
