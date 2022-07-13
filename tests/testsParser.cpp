@@ -11,56 +11,82 @@
 #include "parser/CommandData.hpp"
 #include "parser/Interpretor.hpp"
 #include "parser/Parser.hpp"
+#include "IOperand.hpp"
 
-Test(main_base_good_file, goodFileProvide)
+Test(calcmul, str)
 {
-    Parser::ParssCommand pars;
-    const std::string filetest = "exemple.avm";
+    AbstractVM::IOperand *ope1 = AbstractVM::Factory::operands.at(AbstractVM::BIGDECIMAL)("4782.2123");
+    AbstractVM::IOperand *ope2 = AbstractVM::Factory::operands.at(AbstractVM::BIGDECIMAL)("-291");
+    AbstractVM::IOperand *ope3 = *ope1 * *ope2;
 
-    int result = pars.readData(filetest);
-
-    cr_assert_eq(result, 0);
+    cr_assert_eq(ope3->toString().compare("-1391623.77930000"), 0);
 }
 
-Test(main_base_bad_file, badFileProvide)
+Test(calcmsmul1, str)
 {
-    Parser::ParssCommand pars;
-    const std::string filetest = "badFile.avm";
+    AbstractVM::IOperand *ope1 = AbstractVM::Factory::operands.at(AbstractVM::BIGDECIMAL)("4782.2123");
+    AbstractVM::IOperand *ope2 = AbstractVM::Factory::operands.at(AbstractVM::BIGDECIMAL)("-291");
+    AbstractVM::IOperand *ope3 = *ope1 * *ope2;
 
-    bool result = pars.readData(filetest);
-
-    cr_assert_eq(result, 1);
+    cr_assert_eq(ope3->toString().compare("-1391623.77930000"), 0);
 }
 
-Test(data_given_is_good, dataOk)
+Test(calcmmul2, str)
 {
-    Parser::ParssCommand pars;
-    const std::string filetest = "exemple.avm";
+    AbstractVM::IOperand *ope1 = AbstractVM::Factory::operands.at(AbstractVM::BIGDECIMAL)("4782.2123");
+    AbstractVM::IOperand *ope2 = AbstractVM::Factory::operands.at(AbstractVM::BIGDECIMAL)("291");
+    AbstractVM::IOperand *ope3 = *ope1 * *ope2;
 
-    pars.readData(filetest);
-    bool result = pars.checkProvideData();
-
-    cr_assert_eq(result, true);
+    cr_assert_eq(ope3->toString().compare("1391623.77930000"), 0);
 }
 
-Test(data_given_is_bad, dataKO)
+Test(calcmmul3, str)
 {
-    Parser::ParssCommand pars;
-    const std::string filetest = "badexemple.avm";
+    AbstractVM::IOperand *ope1 = AbstractVM::Factory::operands.at(AbstractVM::BIGDECIMAL)("-4782.2123");
+    AbstractVM::IOperand *ope2 = AbstractVM::Factory::operands.at(AbstractVM::BIGDECIMAL)("291");
+    AbstractVM::IOperand *ope3 = *ope1 * *ope2;
 
-    pars.readData(filetest);
-    bool result = pars.checkProvideData();
-
-    cr_assert_eq(result, false);
+    cr_assert_eq(ope3->toString().compare("-1391623.77930000"), 0);
 }
 
-Test(given_over_data, Ok)
+Test(calcmmul4, str)
 {
-    Parser::ParssCommand pars;
-    const std::string filetest = "exempleoverdata.avm";
+    AbstractVM::IOperand *ope1 = AbstractVM::Factory::operands.at(AbstractVM::BIGDECIMAL)("-4782.2123");
+    AbstractVM::IOperand *ope2 = AbstractVM::Factory::operands.at(AbstractVM::BIGDECIMAL)("-291");
+    AbstractVM::IOperand *ope3 = *ope1 * *ope2;
 
-    pars.readData(filetest);
-    bool result = pars.checkProvideData();
+    cr_assert_eq(ope3->toString().compare("1391623.77930000"), 0);
+}
 
-    cr_assert_eq(result, false);
+Test(calcmsub1, str)
+{
+    AbstractVM::IOperand *ope1 = AbstractVM::Factory::operands.at(AbstractVM::BIGDECIMAL)("4782.2123");
+    AbstractVM::IOperand *ope2 = AbstractVM::Factory::operands.at(AbstractVM::BIGDECIMAL)("291");
+    AbstractVM::IOperand *ope3 = *ope1 - *ope2;
+
+    std::cout << ope3->toString() << std::endl;
+
+    cr_assert_eq(ope3->toString().compare("4491.2123"), 0);
+}
+
+Test(calcmsub2, str)
+{
+    AbstractVM::IOperand *ope1 = AbstractVM::Factory::operands.at(AbstractVM::BIGDECIMAL)("4782.2123");
+    AbstractVM::IOperand *ope2 = AbstractVM::Factory::operands.at(AbstractVM::BIGDECIMAL)("-291");
+    AbstractVM::IOperand *ope3 = *ope1 - *ope2;
+
+    std::cout << ope3->toString() << std::endl;
+
+    cr_assert_eq(ope3->toString().compare("5073.2123"), 0);
+}
+
+Test(calcmsub1, str)
+{
+    AbstractVM::IOperand *ope1 = AbstractVM::Factory::operands.at(AbstractVM::BIGDECIMAL)("4782.2123");
+    AbstractVM::IOperand *ope2 = AbstractVM::Factory::operands.at(AbstractVM::BIGDECIMAL)("291");
+    AbstractVM::IOperand *ope3 = *ope1 - *ope2;
+
+    std::cout << ope3->toString() << std::endl;
+
+    cr_assert_eq(ope3->toString().compare("4491.2123"), 0);
 }

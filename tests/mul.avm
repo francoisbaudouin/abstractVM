@@ -1,0 +1,5 @@
+push bigdecimal(239814782.2123)
+push bigdecimal(291)
+mul
+dump
+exit
