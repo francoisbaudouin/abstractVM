@@ -28,7 +28,6 @@ namespace Parser
             _value = std::stoi(value);
             return (true);
         }
-
         _dataCommand = AbstractVM::Factory::operands.at(type)(value);
         return (true);
     }

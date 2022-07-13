@@ -1,6 +1,5 @@
-; yennefer is better than triss
-push int32(33) ; jéjé
-push int32(42)
+push int32(33) ; hello 
+push int32(42) ; jaskier
 add
 push float(44.55)
 mul

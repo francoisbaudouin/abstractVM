@@ -10,6 +10,7 @@
 #include "parser/CommandData.hpp"
 #include "parser/Interpretor.hpp"
 #include "parser/Parser.hpp"
+#include "types/Operand.hpp"
 
 bool execution_prog(std::vector<Parser::CommandData> &data)
 {
@@ -34,6 +35,7 @@ bool execution_prog(std::vector<Parser::CommandData> &data)
 int main(int ac, char **argv)
 {
     Parser::ParssCommand pars;
+
     try {
         // Choice between reading file or user input
         if (ac == 2) {

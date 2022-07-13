@@ -12,55 +12,99 @@
 #include "parser/Interpretor.hpp"
 #include "parser/Parser.hpp"
 
-Test(main_base_good_file, goodFileProvide)
+Test(give_good_file, OK)
 {
     Parser::ParssCommand pars;
-    const std::string filetest = "exemple.avm";
+    const std::string filetest = "tests/exemple/exemple.avm";
 
     int result = pars.readData(filetest);
 
     cr_assert_eq(result, 0);
 }
 
-Test(main_base_bad_file, badFileProvide)
+Test(give_bad_file, KO)
 {
     Parser::ParssCommand pars;
-    const std::string filetest = "badFile.avm";
+    const std::string filetest = "tests/exemple/badfile.avm";
 
-    bool result = pars.readData(filetest);
+    int result = pars.readData(filetest);
 
     cr_assert_eq(result, 1);
 }
 
-Test(data_given_is_good, dataOk)
+Test(file_with_good_data, OK)
 {
     Parser::ParssCommand pars;
-    const std::string filetest = "exemple.avm";
+    const std::string filetest = "tests/exemple/exemple.avm";
 
     pars.readData(filetest);
     bool result = pars.checkProvideData();
+    cr_assert_eq(result, true);
+}
+
+Test(file_with_bad_data, KO)
+{
+    Parser::ParssCommand pars;
+    const std::string filetest = "tests/exemple/badexemple.avm";
+
+    pars.readData(filetest);
+    bool result = pars.checkProvideData();
+    cr_assert_eq(result, false);
+}
+
+Test(check_data_with_empty_dataStorage, KO)
+{
+    Parser::ParssCommand pars;
+    const std::string filetest = "tests/exemple/badexemple.avm";
+
+    bool result = pars.checkProvideData();
+    cr_assert_eq(result, false);
+}
+
+Test(read_file_with_dataStorage_not_empty, KO)
+{
+    Parser::ParssCommand pars;
+    const std::string filetest = "tests/exemple/badexemple.avm";
+
+    pars.readData(filetest);
+    int result = pars.readData(filetest);
+
+    cr_assert_eq(result, 1);
+}
+
+Test(get_data, OK)
+{
+    Parser::ParssCommand pars;
+    const std::string filetest = "tests/exemple/exemple.avm";
+    bool result = true;
+
+    pars.readData(filetest);
+    pars.checkProvideData();
+
+    if (pars.getDataCommand().empty() == true)
+        result = false;
 
     cr_assert_eq(result, true);
 }
 
-Test(data_given_is_bad, dataKO)
+Test(Provide_data_not_match_one, KO)
 {
     Parser::ParssCommand pars;
-    const std::string filetest = "badexemple.avm";
+    const std::string filetest = "tests/exemple/badexemple_two.avm";
+    bool result = true;
 
     pars.readData(filetest);
-    bool result = pars.checkProvideData();
-
+    result = pars.checkProvideData();
     cr_assert_eq(result, false);
 }
 
-Test(given_over_data, Ok)
+Test(Provide_data_not_match_two, KO)
 {
     Parser::ParssCommand pars;
-    const std::string filetest = "exempleoverdata.avm";
+    const std::string filetest = "tests/exemple/exemple_empty_file.avm";
+    bool result = true;
 
     pars.readData(filetest);
-    bool result = pars.checkProvideData();
-
+    result = pars.checkProvideData();
     cr_assert_eq(result, false);
 }

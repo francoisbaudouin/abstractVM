@@ -26,7 +26,7 @@ namespace Parser
     {
         std::string line;
 
-        if (!_data.empty()) {
+        if (_data.empty() == false) {
             return (1);
         }
         std::ifstream file(path);
@@ -81,6 +81,7 @@ namespace Parser
     }
 
     std::vector<CommandData> &ParssCommand::getDataCommand() { return (_dataCommand); }
+
     bool ParssCommand::checkProvideData()
     {
         if (_exitIsCalled == false)
