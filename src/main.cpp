@@ -20,6 +20,7 @@ bool execution_prog(std::vector<Parser::CommandData> &data)
     }
     for (size_t i = 0; i < vecSize; i++) {
         auto it = exec._functPtr.find(data[i].getName());
+
         if (it == exec._functPtr.end()) {
             return (false);
         } else {
@@ -46,7 +47,8 @@ int main(int ac, char **argv)
         if (pars.checkProvideData() == false) {
             return (84);
         }
-        execution_prog(pars.getDataCommand());
+        if (execution_prog(pars.getDataCommand()) == false)
+            return 84;
         return 0;
     } catch (const std::exception &e) {
         std::cerr << e.what() << '\n';

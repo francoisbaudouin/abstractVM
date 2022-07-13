@@ -58,3 +58,8 @@ AbstractVM::InvalidValue::InvalidValue(std::string const &msg)
     : Exception("error: " + msg + " : value should be between 0 and 15")
 {
 }
+
+AbstractVM::CommandUnknown::CommandUnknown(std::string const &msg)
+    : Exception("error: " + msg + " : is unknown command")
+{
+}
