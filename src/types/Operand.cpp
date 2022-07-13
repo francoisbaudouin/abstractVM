@@ -245,6 +245,9 @@ std::string AbstractVM::Operand::infinMul(std::string frst, std::string scnd) co
         res.insert(res.size()-carry,".");
     if (neg%2!=0)
         res.insert(0,"-");
+    if (res.size() > 0)
+        res = removeZero(res);
+
     return (res);
 }
 
